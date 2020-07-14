@@ -1,1 +1,1 @@
-# PageZilla
+packages/core/README.md
