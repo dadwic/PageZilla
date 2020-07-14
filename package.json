@@ -64,9 +64,14 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*",
-      "packages/examples/*"
+      "packages/core",
+      "packages/layers",
+      "packages/utils"
     ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.7.7",
