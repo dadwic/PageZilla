@@ -28,7 +28,7 @@ export const Actions = (
   state: EditorState,
   query: QueryCallbacksFor<typeof QueryMethods>
 ) => {
-  /** Helper functions */
+  /* Helper functions */
   const addNodeToParentAtIndex = (
     node: Node,
     parentId: NodeId,
