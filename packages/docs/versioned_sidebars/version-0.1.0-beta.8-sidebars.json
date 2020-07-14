@@ -1,16 +1,16 @@
 {
-  "version-0.1.0-beta.8/docs": [
+  "version-0.1.0-beta.9/docs": [
     {
       "type": "category",
       "label": "Introduction",
       "items": [
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/overview"
+          "id": "version-0.1.0-beta.9/overview"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/acknowledgements"
+          "id": "version-0.1.0-beta.9/acknowledgements"
         }
       ]
     },
@@ -20,15 +20,15 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/concepts/nodes"
+          "id": "version-0.1.0-beta.9/concepts/nodes"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/concepts/user-components"
+          "id": "version-0.1.0-beta.9/concepts/user-components"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/concepts/editor-components"
+          "id": "version-0.1.0-beta.9/concepts/editor-components"
         }
       ]
     },
@@ -38,11 +38,11 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/guides/basic-tutorial"
+          "id": "version-0.1.0-beta.9/guides/basic-tutorial"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/guides/save-load-state"
+          "id": "version-0.1.0-beta.9/guides/save-load-state"
         }
       ]
     },
@@ -52,43 +52,43 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/editor-state"
+          "id": "version-0.1.0-beta.9/api/editor-state"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/node"
+          "id": "version-0.1.0-beta.9/api/node"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/user-component"
+          "id": "version-0.1.0-beta.9/api/user-component"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/nodetree"
+          "id": "version-0.1.0-beta.9/api/nodetree"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/editor"
+          "id": "version-0.1.0-beta.9/api/editor"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/frame"
+          "id": "version-0.1.0-beta.9/api/frame"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/element"
+          "id": "version-0.1.0-beta.9/api/element"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/useEditor"
+          "id": "version-0.1.0-beta.9/api/useEditor"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/useNode"
+          "id": "version-0.1.0-beta.9/api/useNode"
         },
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/api/helpers"
+          "id": "version-0.1.0-beta.9/api/helpers"
         }
       ]
     },
@@ -98,7 +98,7 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.1.0-beta.8/additional/layers"
+          "id": "version-0.1.0-beta.9/additional/layers"
         }
       ]
     }
