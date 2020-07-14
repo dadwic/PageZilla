@@ -1,6 +1,5 @@
 {
   "npmClient": "yarn",
-  "private": true,
   "author": "Mehrdad Mehralian <dadwic@yahoo.com>",
   "scripts": {
     "dev": "./scripts/dev.sh",
