@@ -11,7 +11,7 @@
     "web-builder",
     "react"
   ],
-  "version": "0.1.0-beta.18",
+  "version": "0.1.0-beta.19",
   "author": "Mehrdad Mehralian <dadwic@yahoo.com>",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/dadwic/PageZilla/",
   "dependencies": {
-    "@pagezilla/utils": "^0.1.0-beta.18",
+    "@pagezilla/utils": "^0.1.0-beta.19",
     "immer": "^3.1.3",
     "lodash.isequalwith": "^4.4.0",
     "react-contenteditable": "^3.3.3",
@@ -47,5 +47,5 @@
     "@pagezilla/core": "^0.1.0-alpha.1",
     "react": "^16.8.0"
   },
-  "gitHead": "7a43acba1875b467771161ef358d9e0e53db1b2c"
+  "gitHead": "4884673326515a5aaae8a9fa0fc577538ee83571"
 }
