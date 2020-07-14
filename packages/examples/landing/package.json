@@ -1,6 +1,6 @@
 {
   "name": "example-landing",
-  "version": "0.1.0-beta.13",
+  "version": "0.1.0-beta.14",
   "scripts": {
     "start": "next dev -p 3001",
     "build": "next build",
@@ -11,8 +11,8 @@
     "@material-ui/core": "^4.5.2",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/styles": "^4.5.2",
-    "@pagezilla/core": "^0.1.0-beta.13",
-    "@pagezilla/layers": "^0.1.0-beta.13",
+    "@pagezilla/core": "^0.1.0-beta.14",
+    "@pagezilla/layers": "^0.1.0-beta.14",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "classnames": "^2.2.6",
