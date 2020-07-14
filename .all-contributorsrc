@@ -1,0 +1,35 @@
+{
+  "projectName": "PageZilla",
+  "projectOwner": "dadwic",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "packages/core/README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "types": {
+    "proofread": {
+      "symbol": "🧐",
+      "description": "Proofreading.",
+      "link": "[<%= symbol %>](<%= url %> \"<%= description %>\"),"
+    }
+  },
+  "contributors": [
+    {
+      "login": "dadwic",
+      "name": "Mehrdad Mehralian",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13819774?v=4",
+      "profile": "https://github.com/dadwic",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "ideas",
+        "example"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

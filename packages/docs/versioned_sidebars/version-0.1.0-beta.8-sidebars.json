@@ -1,0 +1,106 @@
+{
+  "version-0.1.0-beta.8/docs": [
+    {
+      "type": "category",
+      "label": "Introduction",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/acknowledgements"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Core Concepts",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/concepts/nodes"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/concepts/user-components"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/concepts/editor-components"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Guides",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/guides/basic-tutorial"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/guides/save-load-state"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API Reference",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/editor-state"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/node"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/user-component"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/nodetree"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/editor"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/frame"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/element"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/useEditor"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/useNode"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/api/helpers"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Additional Packages",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-0.1.0-beta.8/additional/layers"
+        }
+      ]
+    }
+  ]
+}
