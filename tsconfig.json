@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@pagezilla/core": ["packages/core/src/index"],
+      "@pagezilla/*": ["packages/core/src/*"],
+      "@pagezilla/layers": ["packages/layers/src/index"],
+      "@pagezilla/utils": ["packages/utils/src/index"],
+      "@pagezilla/utils/*": ["packages/utils/src/*"]
+    }
+  },
+  "exclude": ["**/node_modules/**"]
+}
