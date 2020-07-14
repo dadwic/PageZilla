@@ -211,6 +211,7 @@ export const Actions = (
         ];
       });
 
+      console.log('nodePairs', nodePairs);
       this.replaceNodes(fromEntries(nodePairs));
     },
     /**
