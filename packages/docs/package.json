@@ -1,7 +1,6 @@
 {
   "name": "docs",
-  "version": "0.1.0-beta.12",
-  "private": true,
+  "version": "0.1.0-beta.13",
   "scripts": {
     "start": "docusaurus start",
     "build": "docusaurus build",
