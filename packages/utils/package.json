@@ -1,7 +1,8 @@
 {
   "name": "@pagezilla/utils",
   "description": "Utilities used internally across the PageZilla monorepo",
-  "version": "0.1.0-beta.35",
+  "private": false,
+  "version": "0.1.0-beta.8",
   "author": "Mehrdad Mehralian <dadwic@yahoo.com>",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
@@ -20,6 +21,5 @@
   },
   "peerDependencies": {
     "react": "^16.11.0"
-  },
-  "gitHead": "d3f11990f79fb128e51a0bfb94275d6c445e9283"
+  }
 }

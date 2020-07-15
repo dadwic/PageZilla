@@ -28,7 +28,7 @@ export const Actions = (
   state: EditorState,
   query: QueryCallbacksFor<typeof QueryMethods>
 ) => {
-  /* Helper functions */
+  /** Helper functions */
   const addNodeToParentAtIndex = (
     node: Node,
     parentId: NodeId,
@@ -65,19 +65,25 @@ export const Actions = (
       addNodeToParentAtIndex(node, parentId, index);
     }
 
-    if (!node.data.nodes) {
-      return;
+    if (node.data.nodes) {
+      const childToAdd = [...node.data.nodes];
+      node.data.nodes = [];
+      childToAdd.forEach((childId, index) =>
+        addTreeToParentAtIndex(
+          { rootNodeId: childId, nodes: tree.nodes },
+          node.id,
+          index
+        )
+      );
     }
-    // we need to deep clone here...
-    const childToAdd = [...node.data.nodes];
-    node.data.nodes = [];
-    childToAdd.forEach((childId, index) =>
-      addTreeToParentAtIndex(
-        { rootNodeId: childId, nodes: tree.nodes },
-        node.id,
-        index
-      )
-    );
+
+    if (node.data.linkedNodes) {
+      Object.keys(node.data.linkedNodes).forEach((linkedId) => {
+        const nodeId = node.data.linkedNodes[linkedId];
+        state.nodes[nodeId] = tree.nodes[nodeId];
+        addTreeToParentAtIndex({ rootNodeId: nodeId, nodes: tree.nodes });
+      });
+    }
   };
 
   const getParentAndValidate = (parentId: NodeId): Node => {
@@ -298,7 +304,7 @@ export const Actions = (
     },
 
     /**
-     * Given a `id`, it will set the `dom` property of that node.
+     * Given a `id`, it will set the `dom` porperty of that node.
      *
      * @param id of the node we want to set
      * @param dom

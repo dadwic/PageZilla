@@ -95,7 +95,7 @@ module.exports = {
             },
             {
               label: 'LinkedIn',
-              href: 'https://www.linkedin.com/in/prev/',
+              href: 'https://www.linkedin.com/in/dadwic/',
             },
             {
               label: 'Dribbble',
