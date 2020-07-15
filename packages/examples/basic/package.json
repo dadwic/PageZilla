@@ -3,7 +3,7 @@
   "version": "0.1.0-beta.18",
   "dependencies": {
     "@material-ui/core": "latest",
-    "@pagezilla/core": "^0.1.0-beta.18",
+    "@pagezilla/core": "0.1.0-beta.21",
     "clsx": "latest",
     "copy-to-clipboard": "^3.2.0",
     "lzutf8": "^0.5.5",
