@@ -47,7 +47,7 @@ export const NodeProvider: React.FC<NodeProvider> = ({
   console.log('after deserialization -> connectors: ', connectors);
 
   return (
-    <NodeContext.Provider value={{ id, related, connectors }}>
+    <NodeContext.Provider value={{ id, related }}>
       {children}
     </NodeContext.Provider>
   );
