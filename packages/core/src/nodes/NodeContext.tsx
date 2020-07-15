@@ -21,33 +21,16 @@ export const NodeProvider: React.FC<NodeProvider> = ({
   const { hydrationTimestamp } = useInternalEditor((state) => ({
     hydrationTimestamp: state.nodes[id] && state.nodes[id]._hydrationTimestamp,
   }));
+  console.log('hydrationTimestamp', hydrationTimestamp);
 
   // Get fresh connectors whenever the Nodes are rehydrated (eg: after deserialization)
   const connectors = useMemo(() => {
-    console.log(
-      'connectors useMemo -> ',
-      'handlers: ',
-      handlers,
-      'hydrationTimestamp: ',
-      hydrationTimestamp,
-      'id: ',
-      id,
-      'NodeHandlers: ',
-      NodeHandlers,
-      'handlers.derive: ',
-      handlers.derive(NodeHandlers, id),
-      'handlers.derive.connectors: ',
-      handlers.derive(NodeHandlers, id).connectors()
-    );
-
     return handlers.derive(NodeHandlers, id).connectors();
     // eslint-disable-next-line  react-hooks/exhaustive-deps
-  }, [handlers, hydrationTimestamp, id]);
-
-  console.log('after deserialization -> connectors: ', connectors);
+  }, [handlers, id]);
 
   return (
-    <NodeContext.Provider value={{ id, related }}>
+    <NodeContext.Provider value={{ id, related, connectors }}>
       {children}
     </NodeContext.Provider>
   );
