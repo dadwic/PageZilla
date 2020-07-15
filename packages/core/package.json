@@ -1,6 +1,6 @@
 {
   "name": "@pagezilla/core",
-  "version": "0.1.0-beta.35",
+  "version": "0.1.0-beta.36",
   "description": "A React Framework for building extensible drag and drop page editors",
   "keywords": [
     "react",
