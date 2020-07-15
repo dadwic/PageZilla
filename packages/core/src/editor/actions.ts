@@ -299,7 +299,7 @@ export const Actions = (
     },
 
     /**
-     * Given a `id`, it will set the `dom` porperty of that node.
+     * Given a `id`, it will set the `dom` property of that node.
      *
      * @param id of the node we want to set
      * @param dom
