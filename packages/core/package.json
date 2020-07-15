@@ -1,6 +1,6 @@
 {
   "name": "@pagezilla/core",
-  "version": "0.1.0-beta.29",
+  "version": "0.1.0-beta.30",
   "description": "A React Framework for building extensible drag and drop page editors",
   "keywords": [
     "react",
@@ -34,7 +34,7 @@
     "url": "https://github.com/dadwic/PageZilla/issues"
   },
   "dependencies": {
-    "@pagezilla/utils": "^0.1.0-beta.29",
+    "@pagezilla/utils": "^0.1.0-beta.30",
     "@types/react": "^16.9.11",
     "debounce": "^1.2.0",
     "immer": "^3.1.3",
