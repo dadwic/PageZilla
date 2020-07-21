@@ -2,7 +2,7 @@
   "name": "@pagezilla/utils",
   "description": "Utilities used internally across the PageZilla monorepo",
   "private": false,
-  "version": "0.1.0-beta.39",
+  "version": "0.1.0-beta.40",
   "author": "Mehrdad Mehralian <dadwic@yahoo.com>",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
