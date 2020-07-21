@@ -5,7 +5,7 @@ title: Save and Load
 
 import {Image} from "@site/src/components";
 
-This guide extends upon the [Basic Tutorial](/PageZilla/r/docs/basic-tutorial)
+This guide extends upon the [Basic Tutorial](/craft.js/r/docs/basic-tutorial)
 
 ## Overview
 Previously, we saw how we could serialise the entire state of `Nodes` in our editor into JSON. Of course, you probably will not want to store the JSON in your server or database, for obvious reasons. Instead, you should first employ a text compression technique of your choice to compress the serialised JSON Nodes.
@@ -24,7 +24,7 @@ We'll use `lzutf8` to compress our serialised JSON Nodes, and additionally trans
 ```jsx {24-36}
 import React, { useState } from "react";
 import { Box, FormControlLabel, Switch, Grid, Button as MaterialButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, TextField, Snackbar } from "@material-ui/core";
-import { useEditor } from "@pagezilla/core";
+import { useEditor } from "@craftjs/core";
 import lz from "lzutf8";
 import copy from 'copy-to-clipboard';
 
@@ -82,7 +82,7 @@ Then, we would need to work in reverse to obtain the original JSON provided by o
 ```jsx {12-14,40-83}
 import React, { useState } from "react";
 import { Box, FormControlLabel, Switch, Grid, Button as MaterialButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, TextField, Snackbar } from "@material-ui/core";
-import { useEditor } from "@pagezilla/core";
+import { useEditor } from "@craftjs/core";
 import lz from "lzutf8";
 import copy from 'copy-to-clipboard';
 
@@ -179,7 +179,7 @@ export const Topbar = () => {
 
 
 ### Load JSON on page load
-Of course, what if we wanted our editor to load a serialized output on page load? For this, we will need to take a step back and revisit the `<Frame />` component which we encountered when we first set up PageZilla. 
+Of course, what if we wanted our editor to load a serialized output on page load? For this, we will need to take a step back and revisit the `<Frame />` component which we encountered when we first set up Craft.js. 
 
 By default, it constructs the editor state based on whats was initially rendered in its `children`. But, we could also specifiy the serialised JSON nodes to its `json` prop which would cause it to load the state from the JSON string instead. 
 
@@ -193,7 +193,7 @@ import {Button} from '../components/user/Button';
 import {Card, CardBottom, CardTop} from '../components/user/Card';
 import {Text} from '../components/user/Text';
 import {SettingsPanel} from '../components/SettingsPanel';
-import {Editor, Frame, Element} from "@pagezilla/core";
+import {Editor, Frame, Element} from "@craftjs/core";
 import { Topbar } from '../components/Topbar';
 
 

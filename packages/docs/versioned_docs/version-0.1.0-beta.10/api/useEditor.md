@@ -52,15 +52,18 @@ const { connectors, actions, query, ...collected } = useEditor(collector);
         "(sourceNodeId: NodeId, targetNodeId: NodeId, pos: {x: number, y: number}, nodesToDOM?: (node: Node) => HTMLElement = node => node.dom)",
         "Given the target Node and mouse coordinates on the screen, determine the best possible location to drop the source Node. By default, the Node's DOM property is taken into consideration."
       ],
-      ["node", "(id: NodeId) => NodeHelpers", "Returns an object containing helper methods to describe the specified Node. Click <a href='/PageZilla/r/docs/api/helpers/'>here</a> for more information."],
+      ["node", "(id: NodeId) => NodeHelpers", "Returns an object containing helper methods to describe the specified Node. Click <a href='/craft.js/r/docs/api/helpers/'>here</a> for more information."],
       ["parseReactElement", "(element: React.ReactElement) => Object", [
-        ["toNodeTree", "() => NodeTree", "Parses a given React element into a NodeTree"]
+        ["toNodeTree", "(normalize?: (node: Node, jsx: React.ReactElement) => void) => NodeTree", "Parse a given React element into a NodeTree"]
       ]],
       ["parseSerializedNode", "(node: SerializedNode) => Object", [
-        ["toNode", "() => Node", "Parses a serialized Node back into it's full Node form"]
-      ]]
+        ["toNode", "(normalize?: (node: Node) => void) => Node", "Parse a serialized Node back into it's full Node form"]
+      ]],
+      ["parseFreshNode", "(node: FreshNode) => Object", [
+        ["toNode", "(normalize?: (node: Node) => void) => Node", "Parse a fresh/new Node object into it's full Node form, ensuring all properties of a Node is correctly initia lised. This is useful when you need to create a new Node."]
+      ]],
     ]],
-    ["inContext", "boolean", "Returns false if the component is rendered outside of the &lt;Editor /&gt;. This is useful if you are designing a general component that you also wish to use outside of PageZilla."],
+    ["inContext", "boolean", "Returns false if the component is rendered outside of the &lt;Editor /&gt;. This is useful if you are designing a general component that you also wish to use outside of Craft.js."],
     ["...collected", "Collected", "The collected values returned from the collector"]
   ]
   ]
@@ -70,7 +73,7 @@ const { connectors, actions, query, ...collected } = useEditor(collector);
 
 ### Collecting state information
 ```tsx
-import {useEditor} from "@pagezilla/core";
+import {useEditor} from "@craftjs/core";
 
 const Example = () => {
   const { hoveredNodeId } = useEditor((state) => ({
@@ -87,7 +90,7 @@ const Example = () => {
 
 ### Updating props
 ```tsx
-import {useEditor} from "@pagezilla/core";
+import {useEditor} from "@craftjs/core";
 
 const Example = () => {
   const { selectedNodeId, actions: {setProp} } = useEditor((state) => ({
@@ -104,6 +107,44 @@ const Example = () => {
     >
       Update
     </a>
+  )
+}
+```
+
+### Creating new Nodes
+```tsx
+import {useEditor} from "@craftjs/core";
+
+const Example = () => {
+  const { query, actions } = useEditor((state, query) => ({
+    hoveredNodeId: state.events.hovered
+  }));
+
+  return (
+    <div>
+      <a onClick={() => {
+        const nodeTree = query.parseReactElement(<h2>Hi</h2>).toNodeTree();
+        actions.addNodeTree(nodeTree);
+      }}>
+        Add a new Node from a React Element
+      </a>
+        
+      <a onClick={() => {
+        // A fresh Node is a partial Node object
+        // where only the data.type property is required
+        const freshNode = {
+            data: {
+                type: 'h1'
+            }
+        };
+        
+        // Create a new valid Node object from the fresh Node
+        const node = query.parseFreshNode(freshNode).toNode();
+        actions.add(node, 'ROOT');
+      }}>
+        Add a new Node from a Node object
+      </a>
+    </div>
   )
 }
 ```
@@ -163,32 +204,11 @@ const Example = () => {
 }
 ```
 
-### Creating and Adding a new Node
-```tsx
-import {useEditor} from "@pagezilla/core";
-
-const Example = () => {
-  const { query, actions } = useEditor((state, query) => ({
-    hoveredNodeId: state.events.hovered
-  }));
-
-  return (
-    <div>
-      <a onClick={() => {
-        const node = query.parseReactElement(<h2>Hi</h2>).toNodeTree();
-        actions.addNodeTree(node);
-      }}>Click me to add a new Node</a>
-    </div>
-  )
-}
-```
-
-
 ### Getting the currently selected Node's descendants
 > Query methods are also accessible from within the collector function.
 
 ```tsx
-import {useEditor} from "@pagezilla/core";
+import {useEditor} from "@craftjs/core";
 
 const Example = () => {
   const { selectedDescendants } = useEditor((state, query) => ({
@@ -283,7 +303,7 @@ For Class Components, use `connectEditor` instead.
 
 ### Example
 ```jsx
-import { connectEditor } from "@pagezilla/core";
+import { connectEditor } from "@craftjs/core";
 
 class SidebarInner extends React.Component {
   render() {

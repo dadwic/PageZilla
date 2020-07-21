@@ -5,8 +5,8 @@ title: Basic Tutorial
 
 import {Image} from "@site/src/components";
 
-<a target="_blank" href="https://dadwic.github.io/PageZilla/examples/basic" className="btn">Live Demo</a> 
-<a target="_blank" href="https://github.com/dadwic/PageZilla/tree/master/packages/examples/basic" className="btn btn-text">View Code</a> 
+<a target="_blank" href="https://prevwong.github.io/craft.js/examples/basic" className="btn">Live Demo</a> 
+<a target="_blank" href="https://github.com/prevwong/craft.js/tree/master/packages/examples/basic" className="btn btn-text">View Code</a> 
 
 ## Overview
 In this tutorial, we'll be designing a simple page editor. It's recommended that you have a basic to intermediate workings of React and it'd be even better if you first have a quick glance at the [Core Concepts](../concepts/nodes.md) and come back here. If you are feeling adventurous, that's fine too.
@@ -17,17 +17,17 @@ In this tutorial, we'll be designing a simple page editor. It's recommended that
 ## Installation
 
 ```bash
-yarn add @pagezilla/core
+yarn add @craftjs/core
 ```
 
 or with npm:
 ```bash
-npm install --save @pagezilla/core
+npm install --save @craftjs/core
 ```
 
 
 ## Designing a user interface
-With PageZilla you decide how your editor should look and function. So, let's build a user interface for our page editor. We'll add the page editor functionalities later.
+With Craft.js you decide how your editor should look and function. So, let's build a user interface for our page editor. We'll add the page editor functionalities later.
 
 
 To make our lives easier, we'll use some external packages for designing our user interfaces.
@@ -262,12 +262,12 @@ export default function App() {
 
 
 
-## Implementing PageZilla
+## Implementing Craft.js
 Up to this point, we have made a user interface for our page editor. Now, let's get it to work!
 
 ### Setup
-- First wrap our application with `<Editor />` which sets up the Editor's context. We'll also need to specify the list of user components in the `resolver` prop for PageZilla to be able to (de)serialize our User Components.
-- Then wrap the editable area with `<Frame />` which passes the rendering process to PageZilla.
+- First wrap our application with `<Editor />` which sets up the Editor's context. We'll also need to specify the list of user components in the `resolver` prop for Craft.js to be able to (de)serialize our User Components.
+- Then wrap the editable area with `<Frame />` which passes the rendering process to Craft.js.
 
 ```jsx {19,22,31,40}
 // pages/index.js
@@ -282,7 +282,7 @@ import { Button } from '../components/user/Button';
 import { Card } from '../components/user/Card';
 import { Text } from '../components/user/Text';
 
-import {Editor, Frame, Element} from "@pagezilla/core";
+import {Editor, Frame, Element} from "@craftjs/core";
 
 export default function App() {
   return (
@@ -363,14 +363,14 @@ Once you've applied these changes and refresh the page, you will notice that abs
 ### Enabling Drag and Drop
 Inside a User Component, we have access to the `useNode` hook which provides several information and methods related to the corresponding `Node`. 
 
-The first thing we will need to do is to let PageZilla to manage the DOM of our component. The hook provides `connectors` which act as a bridge between the DOM and the events in PageZilla:
+The first thing we will need to do is to let Craft.js to manage the DOM of our component. The hook provides `connectors` which act as a bridge between the DOM and the events in Craft.js:
 
 
 ```jsx {4,7,10}
 // components/user/Text.js
 import React from "react";
 import { Typography } from "@material-ui/core";
-import { useNode } from "@pagezilla/core";
+import { useNode } from "@craftjs/core";
 
 export const Text = ({text}) => {
   const { connectors: {connect, drag} } = useNode();
@@ -384,7 +384,7 @@ export const Text = ({text}) => {
 }
 ```
 Let's break this down a little:
-- We passed the `connect` connector to the root element of our component; this tells PageZilla that this element represents the Text component. If the component's corresponding Node is a Canvas, then this also defines the area that is droppable.
+- We passed the `connect` connector to the root element of our component; this tells Craft.js that this element represents the Text component. If the component's corresponding Node is a Canvas, then this also defines the area that is droppable.
 - Then, we also passed `drag` connector to the same root element; this adds the drag handlers to the DOM. If the component's Node is a child of a Canvas, then the user will be able to drag this element and it will move the entire Text component.
 
 We can also specify additional configuration to our component via the `craft` prop. Let's define drag-n-drop rules for our Text Component:
@@ -448,7 +448,7 @@ But hold up, how do we even create a Node inside a User Component?  Remember the
 
 ```jsx {2,7,10,11,13}
 // components/user/Card.js
-import {useNode, Element} from "@pagezilla/core";
+import {useNode, Element} from "@craftjs/core";
 
 export const Card = (({bg, padding})) => {
   return (
@@ -476,7 +476,7 @@ Hence, we can specify and create a new User Component and define rules via the `
 import React  from "react";
 import Text from "./Text";
 import Button from "./Button";
-import { Element, useNode } from "@pagezilla/core";
+import { Element, useNode } from "@craftjs/core";
 
 import { Container }  from "./Container";
 
@@ -557,7 +557,7 @@ The `useEditor` also provides `connectors`; the one we are interested in right n
 // components/Toolbox.js
 import React from "react";
 import { Box, Typography, Grid, Button as MaterialButton } from "@material-ui/core";
-import { Element, useEditor } from "@pagezilla/core";
+import { Element, useEditor } from "@craftjs/core";
 import { Container } from "./user/Container";
 import { Card } from "./user/Card";
 import { Button } from "./user/Button";
@@ -929,7 +929,7 @@ Now, let's replace the placeholder text fields in our Settings Panel with the `s
 // components/SettingsPanel.js
 
 import { Box, Chip, Grid, Typography, Button as MaterialButton } from "@material-ui/core";
-import { useEditor } from "@pagezilla/core";
+import { useEditor } from "@craftjs/core";
 
 export const SettingsPanel = () => {
   const { selected } = useEditor((state) => {
@@ -976,7 +976,7 @@ export const SettingsPanel = () => {
 ```
 Now, we have to make our Delete button work. We can achieve this by using the `delete` action available from the `useEditor` hook.
 
-Also, it's important to note that not all nodes are deletable - if we try to delete an undeletable Node, it'll result in an error. Hence, it's good to make use of the [helper](/PageZilla/docs/api/helpers) methods which helps describe a Node. In our case, we would like to know if the currently selected Node is deletable before actually displaying the "Delete" button. We can access the helper methods via the `node` query in the `useEditor` hook.
+Also, it's important to note that not all nodes are deletable - if we try to delete an undeletable Node, it'll result in an error. Hence, it's good to make use of the [helper](/craft.js/docs/api/helpers) methods which helps describe a Node. In our case, we would like to know if the currently selected Node is deletable before actually displaying the "Delete" button. We can access the helper methods via the `node` query in the `useEditor` hook.
 
 ```jsx {13,27-37}
 // components/SettingsPanel.js
@@ -1035,7 +1035,7 @@ Lastly, the `useEditor` hook also provides `query` methods which provide informa
 // components/Topbar.js
 import React from "react";
 import { Box, FormControlLabel, Switch, Grid, Button as MaterialButton } from "@material-ui/core";
-import { useEditor } from "@pagezilla/core";
+import { useEditor } from "@craftjs/core";
 
 export const Topbar = () => {
   const { actions, query, enabled } = useEditor((state) => ({
@@ -1075,7 +1075,7 @@ export const Topbar = () => {
 
 
 ## You made it 🎉
-We've made it until the end! Not too bad right? Hopefully, you're able to see the simplicity of building a fully working page editor with PageZilla.
+We've made it until the end! Not too bad right? Hopefully, you're able to see the simplicity of building a fully working page editor with Craft.js.
 
 We do not need to worry about implementing the drag-n-drop system but rather simply focus on writing rules and attaching connectors to the desired elements.
 

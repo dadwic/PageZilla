@@ -1,6 +1,6 @@
 import React from 'react';
 import { QueryMethods } from '../editor/query';
-import { QueryCallbacksFor } from '@pagezilla/utils';
+import { QueryCallbacksFor } from '@craftjs/utils';
 
 type UserComponentConfig<T> = {
   displayName: string;
@@ -53,6 +53,11 @@ export type NodeData = {
   hidden: boolean;
   custom?: any;
   _childCanvas?: Record<string, NodeId>; // TODO: Deprecate in favour of linkedNodes
+};
+
+export type FreshNode = {
+  id?: NodeId;
+  data: Partial<NodeData> & Required<Pick<NodeData, 'type'>>;
 };
 
 export type ReduceCompType =

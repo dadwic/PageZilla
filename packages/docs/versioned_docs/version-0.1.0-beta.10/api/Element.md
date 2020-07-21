@@ -29,7 +29,7 @@ Defines the Node for a given User Element
 Since the `<Frame />` component creates a Node automatically for all of its children elements, thus the `<Element />` component can be used to simply configure the values of the Node that is being created.
 
 ```jsx 
-import {Craft, Frame, Element} from "@pagezilla/core";
+import {Craft, Frame, Element} from "@craftjs/core";
 
 const App = () => {
   return (

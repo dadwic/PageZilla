@@ -37,7 +37,7 @@ function App() {
         <NextSeo
           title="PageZilla"
           description="A React framework for building drag-n-drop page editors."
-          canonical="https://www.canonical.ie/"
+          canonical="https://pagezilla.ir/"
           twitter={{
             handle: '@handle',
             site: '@site',

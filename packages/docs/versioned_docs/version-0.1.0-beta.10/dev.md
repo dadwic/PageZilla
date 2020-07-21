@@ -1,6 +1,6 @@
 ---
 id: dev
-title: PageZilla - Build any page editor with React
+title: Craft.js - Build any page editor with React
 ---
 
 
@@ -10,14 +10,14 @@ You know a web application is fancy when it has a page editor. Without a doubt, 
 Existing libraries such as Grape.js or react-page are great for a working out-of-the-box page editor solution. However, as soon as you need to customise the look and feel of the page editor itself, you will find yourself hacking in the library's code.
 
 
-## Introducing PageZilla
-PageZilla is a React framework to build any type of page editor. Instead of providing a working page editor implementation with a user interface, PageZilla provides an abstraction for you to implement your own page editor upon. It comes backed-in with an extensible drag-n-drop system which handles the way React elements should be rendered/updated, and a cohesive API to interact with the editor which you can additionally implement your own features on top of.
+## Introducing Craft.js
+Craft.js is a React framework to build any type of page editor. Instead of providing a working page editor implementation with a user interface, Craft.js provides an abstraction for you to implement your own page editor upon. It comes backed-in with an extensible drag-n-drop system which handles the way React elements should be rendered/updated, and a cohesive API to interact with the editor which you can additionally implement your own features on top of.
 
 ### TL;DR
 - Design your own user interface for your page editor
 - Write React components that end-user could edit
 - Govern drag-and-drop conditions for your components
-- Control how your components should be edited. From simple text fields to content editables and drag to resize; if you can do it in React, then you can do it with PageZilla.
+- Control how your components should be edited. From simple text fields to content editables and drag to resize; if you can do it in React, then you can do it with Craft.js.
 
 
 ## Editable React Components
@@ -36,10 +36,10 @@ const Card = ({title}) => {
 }
 ```
 
-First, to integrate it with with PageZilla' drag-and-drop system, we just need to do the following modifications:
+First, to integrate it with with Craft.js' drag-and-drop system, we just need to do the following modifications:
 
 ```jsx
-import {useNode} from "@pagezilla/core";
+import {useNode} from "@craftjs/core";
 
 const Card = ({title}) => {
   const { connectors: { connect, drag } } = useNode();
@@ -55,7 +55,7 @@ const Card = ({title}) => {
 ```
 
 What's happening here? 
-- We passed the `connect` connector to the root element of our component; this tells PageZilla that this element represents the `Card` component. Hence, the dimensions of the specified element will be taken into consideration during drag and drop events.
+- We passed the `connect` connector to the root element of our component; this tells Craft.js that this element represents the `Card` component. Hence, the dimensions of the specified element will be taken into consideration during drag and drop events.
 - Then, we also passed `drag` connector to the same root element; this adds the drag handlers to the DOM. If the component is rendered as the child of a `<Canvas />`, the user will be able to drag this element and it will move the entire Text component.
 
 
@@ -73,11 +73,11 @@ Card.craft = {
 #### Droppable regions
 Next, let's take a look at the `#p-only` element we specified in our Card component. What if we want this area to be droppable where only `p` can be dropped? 
 
-This is where the`<Canvas />` component provided by PageZilla becomes useful. It defines a droppable region where each of its immediate child is draggable.
+This is where the`<Canvas />` component provided by Craft.js becomes useful. It defines a droppable region where each of its immediate child is draggable.
 
 
 ```jsx
-import {useNode, Canvas} from "@pagezilla/core";
+import {useNode, Canvas} from "@craftjs/core";
 
 const Card = ({title}) => {
   const { connectors: { connect, drag } } = useNode();
@@ -94,7 +94,7 @@ const Card = ({title}) => {
 Your next question might be about how we control our newly created droppable region. The `<Canvas />` component accepts an `is` prop which can be either a HTML element or a React component (by default, it's a `div`). So, if we supply a React component, we can essentially achieve the same design flexibility as we have with our Card component:
 
 ```jsx
-import {useNode, Canvas} from "@pagezilla/core";
+import {useNode, Canvas} from "@craftjs/core";
 
 const Container = ({children}) => {
   const { connectors: {connect} } = useNode();
@@ -127,7 +127,7 @@ const Card = ({title}) => {
 Let's break this down a bit. Our `<Container />` component is being rendered as a droppable region. This means, all dropped elements will be rendered in the component's `children` prop. Next, we also specified the `connectors` just as we did previously. This time, we specified a `canMoveIn` rule where only elements with the `p` tag will be accepted into the component.
 
 ## Control editing behaviours
-Of course, any page editor must allow the end-user to edit the elements that are rendered. With PageZilla, you are in control of this as well. 
+Of course, any page editor must allow the end-user to edit the elements that are rendered. With Craft.js, you are in control of this as well. 
 
 Let's make our `h2` element content editable so our users could visually edit the `title` prop:
 
@@ -164,7 +164,7 @@ What we are doing is essentially accessing Craft's internal state and retrieving
 
 ## Your page editor, your user interface
 
-Essentially, PageZilla exposes these few React components:
+Essentially, Craft.js exposes these few React components:
 - `Editor` creates the Editor context and sets everything up
 - `Frame` defines the editable area
 
@@ -260,4 +260,4 @@ Let's break this down:
 
 
 ## Closing words
-This has been a high-level overview of PageZilla and we've only covered some very basic examples. We've seen how we could easily control almost every aspect of the page editor experience. Hopefully, this article has given you an idea on the possibilities of what you can do with PageZilla.
+This has been a high-level overview of Craft.js and we've only covered some very basic examples. We've seen how we could easily control almost every aspect of the page editor experience. Hopefully, this article has given you an idea on the possibilities of what you can do with Craft.js.

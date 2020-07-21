@@ -17,7 +17,7 @@ import {
   QueryCallbacksFor,
   ERROR_NOPARENT,
   ERROR_DELETE_TOP_LEVEL_NODE,
-} from '@pagezilla/utils';
+} from '@craftjs/utils';
 import { QueryMethods } from './query';
 import { fromEntries } from '../utils/fromEntries';
 import { updateEventsNode } from '../utils/updateEventsNode';
@@ -213,7 +213,9 @@ export const Actions = (
 
         return [
           nodeId,
-          query.parseSerializedNode(dehydratedNodes[id]).toNode(nodeId),
+          query
+            .parseSerializedNode(dehydratedNodes[id])
+            .toNode((node) => (node.id = nodeId)),
         ];
       });
 

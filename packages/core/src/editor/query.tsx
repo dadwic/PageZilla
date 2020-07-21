@@ -9,6 +9,7 @@ import {
   NodeTree,
   SerializedNodes,
   SerializedNode,
+  FreshNode,
 } from '../interfaces';
 import invariant from 'tiny-invariant';
 import {
@@ -18,8 +19,9 @@ import {
   deprecationWarning,
   DEPRECATED_ROOT_NODE,
   ROOT_NODE,
-} from '@pagezilla/utils';
+} from '@craftjs/utils';
 import findPosition from '../events/findPosition';
+import { createNode } from '../utils/createNode';
 import { parseNodeFromJSX } from '../utils/parseNodeFromJSX';
 import { fromEntries } from '../utils/fromEntries';
 import { mergeTrees } from '../utils/mergeTrees';
@@ -171,24 +173,43 @@ export function QueryMethods(state: EditorState) {
     }),
 
     parseSerializedNode: (serializedNode: SerializedNode) => ({
-      toNode(id?: NodeId): Node {
+      toNode(normalize?: (node: Node) => void): Node {
         const data = deserializeNode(serializedNode, state.options.resolver);
-
         invariant(data.type, ERROR_NOT_IN_RESOLVER);
 
-        return parseNodeFromJSX(
-          React.createElement(data.type, data.props),
-          (node) => {
-            if (id) {
-              node.id = id;
-            }
-            node.data = data;
+        const id = typeof normalize === 'string' && normalize;
 
-            if (node.data.parent === DEPRECATED_ROOT_NODE) {
-              node.data.parent = ROOT_NODE;
-            }
+        if (id) {
+          deprecationWarning(`query.parseSerializedNode(...).toNode(id)`, {
+            suggest: `query.parseSerializedNode(...).toNode(node => node.id = id)`,
+          });
+        }
+
+        return _()
+          .parseFreshNode({
+            ...(id ? { id } : {}),
+            data,
+          })
+          .toNode(!id && normalize);
+      },
+    }),
+
+    parseFreshNode: (node: FreshNode) => ({
+      toNode(normalize?: (node: Node) => void): Node {
+        return createNode(node, (node) => {
+          if (node.data.parent === DEPRECATED_ROOT_NODE) {
+            node.data.parent = ROOT_NODE;
           }
-        );
+
+          const name = resolveComponent(state.options.resolver, node.data.type);
+          invariant(name !== null, ERROR_NOT_IN_RESOLVER);
+          node.data.displayName = node.data.displayName || name;
+          node.data.name = name;
+
+          if (normalize) {
+            normalize(node);
+          }
+        });
       },
     }),
 
