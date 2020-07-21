@@ -17,7 +17,7 @@ import {
   QueryCallbacksFor,
   ERROR_NOPARENT,
   ERROR_DELETE_TOP_LEVEL_NODE,
-} from '@craftjs/utils';
+} from '@pagezilla/utils';
 import { QueryMethods } from './query';
 import { fromEntries } from '../utils/fromEntries';
 import { updateEventsNode } from '../utils/updateEventsNode';

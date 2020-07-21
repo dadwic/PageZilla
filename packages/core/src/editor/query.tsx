@@ -19,7 +19,7 @@ import {
   deprecationWarning,
   DEPRECATED_ROOT_NODE,
   ROOT_NODE,
-} from '@craftjs/utils';
+} from '@pagezilla/utils';
 import findPosition from '../events/findPosition';
 import { createNode } from '../utils/createNode';
 import { parseNodeFromJSX } from '../utils/parseNodeFromJSX';
