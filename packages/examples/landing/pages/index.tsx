@@ -39,8 +39,7 @@ function App() {
           description="A React framework for building drag-n-drop page editors."
           canonical="https://pagezilla.ir/"
           twitter={{
-            handle: '@handle',
-            site: '@site',
+            site: 'pagezilla.ir',
             cardType: 'summary_large_image',
           }}
         />

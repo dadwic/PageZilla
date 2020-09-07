@@ -40,7 +40,7 @@ Text.craft = {
 We'll explore each of these values in the following sections.
 
 ## Connectors
-The first thing we would want to do is to actually let Craft.js to manage the DOM for our component. 
+The first thing we would want to do is to actually let PageZilla to manage the DOM for our component. 
 
 - `connect`: specifies the DOM that represents the User Component.  If the component's corresponding Node is a Canvas, then this also defines the area that is droppable.
 - `drag`: specifies the DOM element that should be made draggable. When the user drags this element, it'll be considered as dragging the entire component, therefore moving the entire component to the drop location. This connector only takes effect if the component's corresponding node is a Canvas Node.
@@ -78,7 +78,7 @@ const App = () => {
 - iii. `Hero` is an immediate child of a Canvas Node and is rendered with a Canvas Node - it is both draggable and droppable.
 
 ## Props manipulation
-You've probably seen page editors where you could directly interact with the components and manipulate them. For instance, drag to resize an image or visually edit a text. This is easily achievable with Craft.js as well.
+You've probably seen page editors where you could directly interact with the components and manipulate them. For instance, drag to resize an image or visually edit a text. This is easily achievable with PageZilla as well.
 
 Since components are managed by their corresponding `Node` which contains information including the component's props, thus we can call the `setProp` method to update the prop values stored in the `Node`. In turn, this will re-render the component with its updated values.
 
@@ -240,7 +240,7 @@ const Hero = ({background}) => {
 
 But this won't really work the way we want it to - the Text Component will not have its own Node. Instead, it will still be a part of Hero's Node. So, inside the Text Component, when we call `setProps(props => props.text = "...")`, it will actually be editing the props of `Hero`. In this case, it will be adding a new prop `text` to Hero, which is not consumed by Hero and therefore makes no sense.
 
-So how do we even define new Nodes inside a User Component? Previously, we discussed how `<Element />` is used to define Nodes; that concept is applied universally in Craft.js. Hence, we just have to wrap our `<Text />` element in the example above with `<Element />`. 
+So how do we even define new Nodes inside a User Component? Previously, we discussed how `<Element />` is used to define Nodes; that concept is applied universally in PageZilla. Hence, we just have to wrap our `<Text />` element in the example above with `<Element />`. 
 
 
 ```jsx {4}

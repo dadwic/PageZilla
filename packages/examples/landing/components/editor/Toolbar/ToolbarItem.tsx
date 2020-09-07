@@ -100,7 +100,7 @@ export const ToolbarItem = ({
                 } else {
                   props[propKey] = onChange ? onChange(value) : value;
                 }
-              });
+              }, 500);
             }}
           />
         ) : type == 'slider' ? (
@@ -120,7 +120,7 @@ export const ToolbarItem = ({
                     } else {
                       props[propKey] = onChange ? onChange(value) : value;
                     }
-                  });
+                  }, 1000);
                 }) as any
               }
             />

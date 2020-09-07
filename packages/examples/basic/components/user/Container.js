@@ -35,7 +35,7 @@ export const ContainerSettings = () => {
         <ColorPicker
           value={background}
           onChange={(color) => {
-            setProp((props) => (props.background = color));
+            setProp((props) => (props.background = color), 500);
           }}
         />
       </FormControl>
@@ -43,7 +43,9 @@ export const ContainerSettings = () => {
         <FormLabel component="legend">Padding</FormLabel>
         <Slider
           defaultValue={padding}
-          onChange={(_, value) => setProp((props) => (props.padding = value))}
+          onChange={(_, value) =>
+            setProp((props) => (props.padding = value), 500)
+          }
         />
       </FormControl>
     </div>

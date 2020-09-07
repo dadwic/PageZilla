@@ -1,8 +1,8 @@
 import { QueryCallbacksFor } from '@pagezilla/utils';
 
-import { Nodes, NodeEvents, NodeId } from './nodes';
+import { Nodes, NodeEventTypes, NodeId } from './nodes';
 import { Placement } from './events';
-import { useInternalEditor } from '../editor/useInternalEditor';
+import { useInternalEditorReturnType } from '../editor/useInternalEditor';
 import { QueryMethods } from '../editor/query';
 
 export type Options = {
@@ -20,7 +20,7 @@ export interface Indicator {
   error: string | false;
 }
 
-export type EditorEvents = Record<NodeEvents, NodeId | null> & {
+export type EditorEvents = Record<NodeEventTypes, NodeId | null> & {
   indicator: Indicator | null;
 };
 
@@ -30,4 +30,4 @@ export type EditorState = {
   options: Options;
 };
 
-export type ConnectedEditor<S = null> = useInternalEditor<S>;
+export type ConnectedEditor<S = null> = useInternalEditorReturnType<S>;

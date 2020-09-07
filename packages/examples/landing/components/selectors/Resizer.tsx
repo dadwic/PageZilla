@@ -253,7 +253,7 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
         setProp((prop: any) => {
           prop[propKey.width] = width;
           prop[propKey.height] = height;
-        });
+        }, 500);
       }}
       onResizeStop={() => {
         isResizing.current = false;

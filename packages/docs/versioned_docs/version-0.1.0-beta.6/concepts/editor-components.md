@@ -36,7 +36,7 @@ const App = () => {
 ## Connectors
 With`useEditor`, you can add connectors to DOM elements anywhere in the editor to make use of the editor's internal events. 
 
-Let's say, maybe you are creating a layers panel to display all nodes as Photoshop-like layers (wink wink, `pagezilla-layers`) and would like to change the particular Node's event state when the user clicks/hovers/drags your layers.
+Let's say, maybe you are creating a layers panel to display all nodes as Photoshop-like layers (wink wink, `craftjs-layers`) and would like to change the particular Node's event state when the user clicks/hovers/drags your layers.
 
 ```jsx
 const LayerItem = (nodeId) => {

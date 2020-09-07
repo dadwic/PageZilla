@@ -5,7 +5,7 @@ title: Save and Load
 
 import {Image} from "@site/src/components";
 
-This guide extends upon the [Basic Tutorial](/craft.js/r/docs/basic-tutorial)
+This guide extends upon the [Basic Tutorial](/PageZilla/r/docs/basic-tutorial)
 
 ## Overview
 Previously, we saw how we could serialise the entire state of `Nodes` in our editor into JSON. Of course, you probably will not want to store the JSON in your server or database, for obvious reasons. Instead, you should first employ a text compression technique of your choice to compress the serialised JSON Nodes.
@@ -179,7 +179,7 @@ export const Topbar = () => {
 
 
 ### Load JSON on page load
-Of course, what if we wanted our editor to load a serialized output on page load? For this, we will need to take a step back and revisit the `<Frame />` component which we encountered when we first set up Craft.js. 
+Of course, what if we wanted our editor to load a serialized output on page load? For this, we will need to take a step back and revisit the `<Frame />` component which we encountered when we first set up PageZilla. 
 
 By default, it constructs the editor state based on whats was initially rendered in its `children`. But, we could also specifiy the serialised JSON nodes to its `json` prop which would cause it to load the state from the JSON string instead. 
 

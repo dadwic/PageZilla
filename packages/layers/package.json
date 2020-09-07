@@ -6,12 +6,12 @@
     "html",
     "layers",
     "photoshop",
-    "PageZilla",
+    "pagezilla",
     "page-editor",
     "web-builder",
     "react"
   ],
-  "version": "0.1.0-beta.40",
+  "version": "0.1.0-beta.10",
   "author": "Mehrdad Mehralian <dadwic@yahoo.com>",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/dadwic/PageZilla/",
   "dependencies": {
-    "@pagezilla/utils": "^0.1.0-beta.40",
+    "@pagezilla/utils": "^0.1.0-beta.10",
     "immer": "^3.1.3",
     "lodash.isequalwith": "^4.4.0",
     "react-contenteditable": "^3.3.3",
@@ -46,6 +46,5 @@
   "peerDependencies": {
     "@pagezilla/core": "^0.1.0-alpha.1",
     "react": "^16.8.0"
-  },
-  "gitHead": "d3f11990f79fb128e51a0bfb94275d6c445e9283"
+  }
 }

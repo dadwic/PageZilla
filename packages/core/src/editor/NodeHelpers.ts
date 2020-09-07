@@ -1,4 +1,4 @@
-import { EditorState, Node, NodeId } from '@pagezilla/core';
+import { EditorState, Node, NodeId } from '../interfaces';
 import invariant from 'tiny-invariant';
 import {
   deprecationWarning,
@@ -45,7 +45,8 @@ export function NodeHelpers(state: EditorState, id: NodeId) {
     isDeletable() {
       return !this.isTopLevelNode();
     },
-    isParentOfTopLevelNodes: () => !!node.data.linkedNodes,
+    isParentOfTopLevelNodes: () =>
+      node.data.linkedNodes && Object.keys(node.data.linkedNodes).length > 0,
     isParentOfTopLevelCanvas() {
       deprecationWarning('query.node(id).isParentOfTopLevelCanvas', {
         suggest: 'query.node(id).isParentOfTopLevelNodes',
@@ -106,15 +107,12 @@ export function NodeHelpers(state: EditorState, id: NodeId) {
           }
 
           if (includeOnly !== 'linkedNodes') {
-            const childNodes = node.data.nodes;
+            const childNodes = nodeHelpers(id).childNodes();
 
-            // Include child Nodes if any
-            if (childNodes) {
-              childNodes.forEach((nodeId) => {
-                descendants.push(nodeId);
-                descendants = appendChildNode(nodeId, descendants, depth + 1);
-              });
-            }
+            childNodes.forEach((nodeId) => {
+              descendants.push(nodeId);
+              descendants = appendChildNode(nodeId, descendants, depth + 1);
+            });
           }
 
           return descendants;
@@ -125,6 +123,9 @@ export function NodeHelpers(state: EditorState, id: NodeId) {
     },
     linkedNodes() {
       return Object.values(node.data.linkedNodes || {});
+    },
+    childNodes() {
+      return node.data.nodes || [];
     },
     isDraggable(onError?: (err: string) => void) {
       try {

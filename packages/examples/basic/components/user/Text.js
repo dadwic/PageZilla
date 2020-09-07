@@ -30,7 +30,8 @@ export const Text = ({ text, fontSize, textAlign }) => {
         onChange={(e) =>
           setProp(
             (props) =>
-              (props.text = e.target.value.replace(/<\/?[^>]+(>|$)/g, ''))
+              (props.text = e.target.value.replace(/<\/?[^>]+(>|$)/g, '')),
+            500
           )
         }
         tagName="p"
@@ -59,7 +60,7 @@ const TextSettings = () => {
           min={1}
           max={50}
           onChange={(_, value) => {
-            setProp((props) => (props.fontSize = value));
+            setProp((props) => (props.fontSize = value), 1000);
           }}
         />
       </FormControl>

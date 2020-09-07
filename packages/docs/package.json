@@ -1,6 +1,7 @@
 {
   "name": "docs",
-  "version": "0.1.0-beta.18",
+  "version": "0.1.0-beta.10",
+  "private": true,
   "scripts": {
     "start": "docusaurus start",
     "build": "docusaurus build",
@@ -25,6 +26,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "gitHead": "4884673326515a5aaae8a9fa0fc577538ee83571"
+  }
 }

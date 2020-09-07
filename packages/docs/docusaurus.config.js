@@ -95,7 +95,7 @@ module.exports = {
             },
             {
               label: 'LinkedIn',
-              href: 'https://www.linkedin.com/in/dadwic/',
+              href: 'https://www.linkedin.com/in/prev/',
             },
             {
               label: 'Dribbble',
@@ -109,7 +109,7 @@ module.exports = {
         },
       ],
 
-      copyright: `Copyright © ${new Date().getFullYear()} Mehrdad Mehralian`,
+      copyright: `Copyright © ${new Date().getFullYear()} Prev Wong`,
     },
   },
   presets: [
