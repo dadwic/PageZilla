@@ -1,5 +1,6 @@
 {
   "npmClient": "yarn",
+  "private": true,
   "author": "Mehrdad Mehralian <dadwic@yahoo.com>",
   "scripts": {
     "dev": "./scripts/dev.sh",
@@ -63,14 +64,9 @@
   },
   "workspaces": {
     "packages": [
-      "packages/core",
-      "packages/layers",
-      "packages/utils"
+      "packages/*",
+      "packages/examples/*"
     ]
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
-    "access": "public"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.7.7",

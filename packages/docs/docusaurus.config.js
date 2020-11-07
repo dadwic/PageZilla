@@ -109,7 +109,7 @@ module.exports = {
         },
       ],
 
-      copyright: `Copyright © ${new Date().getFullYear()} Prev Wong`,
+      copyright: `Copyright © ${new Date().getFullYear()} Mehrdad Mehralian`,
     },
   },
   presets: [

@@ -2,9 +2,8 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "packages": [
-    "packages/core",
-    "packages/layers",
-    "packages/utils"
+    "packages/*",
+    "packages/examples/*"
   ],
-  "version": "0.1.0-beta.44"
+  "version": "0.1.0-beta.13"
 }

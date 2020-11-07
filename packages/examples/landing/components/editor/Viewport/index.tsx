@@ -27,10 +27,10 @@ export const Viewport: React.FC = ({ children }) => {
       setTimeout(() => {
         if (
           localStorage &&
-          localStorage.getItem('craftjs-demo-notice') != 'set'
+          localStorage.getItem('pagezilla-demo-notice') != 'set'
         ) {
           setDialog(true);
-          localStorage.setItem('craftjs-demo-notice', 'set');
+          localStorage.setItem('pagezilla-demo-notice', 'set');
         }
         setTimeout(() => {
           if (!unmounted) setMouseEnabled(true);
@@ -99,7 +99,7 @@ export const Viewport: React.FC = ({ children }) => {
           <div className="w-full h-full">
             <div
               className={cx([
-                'craftjs-renderer h-full  w-full transition',
+                'pagezilla-renderer h-full  w-full transition',
                 {
                   'overflow-auto': enabled,
                   'bg-renderer-gray': enabled,

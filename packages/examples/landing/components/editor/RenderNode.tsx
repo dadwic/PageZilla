@@ -85,12 +85,12 @@ export const RenderNode = ({ render }) => {
 
   useEffect(() => {
     document
-      .querySelector('.craftjs-renderer')
+      .querySelector('.pagezilla-renderer')
       .addEventListener('scroll', scroll);
 
     return () => {
       document
-        .querySelector('.craftjs-renderer')
+        .querySelector('.pagezilla-renderer')
         .removeEventListener('scroll', scroll);
     };
   }, [scroll]);

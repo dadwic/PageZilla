@@ -15,4 +15,4 @@ cp -r ./packages/examples/basic/out/ site/examples/basic
 
 touch site/.nojekyll
 touch site/CNAME
-echo "pagezilla.js.org" >> site/CNAME
+echo "pagezilla.ir" >> site/CNAME
