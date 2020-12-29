@@ -23,14 +23,14 @@ const LayerChildren = styled.div<{ hasCanvases: boolean }>`
   ${(props) =>
     props.hasCanvases
       ? `
-  
+
   box-shadow: 0px 0px 44px -1px #00000014;
   border-radius: 10px;
   margin-right: 5px;
   margin-bottom:5px;
-  margin-top:5px; 
+  margin-top:5px;
   > * { overflow:hidden; }
-    &:before { 
+    &:before {
       position:absolute;
       left:-19px;
       width: 2px;
