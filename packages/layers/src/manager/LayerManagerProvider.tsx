@@ -4,7 +4,6 @@ import { useMethods } from '@pagezilla/utils';
 import { LayerMethods } from './actions';
 import { LayerOptions } from '../interfaces';
 import { LayerManagerContext } from './context';
-import { DefaultLayer } from '../layers';
 import { CustomTreeItem } from '../layers';
 
 export const LayerManagerProvider: React.FC<{
@@ -18,7 +17,6 @@ export const LayerManagerProvider: React.FC<{
       hovered: null,
     },
     options: {
-      // renderLayer: DefaultLayer,
       renderLayer: CustomTreeItem,
       ...options,
     },

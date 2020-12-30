@@ -1,27 +1,11 @@
 import React, { PropsWithChildren } from 'react';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
-import {
-  fade,
-  makeStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
-import clsx from 'clsx';
+import { fade, makeStyles, Theme } from '@material-ui/core/styles';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import LinkIcon from '@material-ui/icons/Link';
 import IconButton from '@material-ui/core/IconButton';
-import { SvgIconProps } from '@material-ui/core/SvgIcon';
-
-// import MailIcon from '@material-ui/icons/Mail';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import Label from '@material-ui/icons/Label';
-// import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-// import InfoIcon from '@material-ui/icons/Info';
-// import ForumIcon from '@material-ui/icons/Forum';
-// import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-// import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-// import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import clsx from 'clsx';
 
 import { useEditor } from '@pagezilla/core';
 import { useLayer } from '../useLayer';
@@ -34,14 +18,8 @@ declare module 'csstype' {
 }
 
 type CustomTreeItemProps = TreeItemProps & {
-  bgColor?: string;
-  expanded?: boolean;
-  hovered?: boolean;
-  hasCanvases?: boolean;
-  color?: string;
-  labelIcon?: React.ElementType<SvgIconProps>;
-  labelInfo?: string;
-  labelText?: string;
+  classes?: object;
+  className?: boolean;
 };
 
 interface StyleProps {
@@ -71,33 +49,30 @@ const useTreeItemStyles = makeStyles((theme: Theme) => ({
     '$expanded > &': {
       fontWeight: theme.typography.fontWeightRegular,
     },
-    paddingLeft: ({ depth }: StyleProps): any => {
-      console.log('marginLeft depth', depth, depth * 4);
-      // return depth * 4;
-      return theme.spacing(depth / 2);
+    paddingLeft: ({ depth }: StyleProps) =>
+      depth === 0 ? 8 : theme.spacing(depth + 1) + depth * 7,
+  },
+  group: {
+    marginLeft: 0,
+    position: 'relative',
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      left: ({ depth }: StyleProps) =>
+        depth === 0 ? 8 + 7 : theme.spacing(depth + 2) + depth * 7 - 1,
+      bottom: 0,
+      height: '100%',
+      width: '1px',
+      borderLeft: `1px solid ${fade(theme.palette.text.primary, 0.4)}`,
+      zIndex: 2,
     },
   },
   iconContainer: {
+    display: 'block',
     '& .close': {
       opacity: 0.3,
     },
   },
-  group: {
-    marginLeft: 0,
-    '& $label': {
-      // marginLeft: theme.spacing(2),
-      // marginLeft: ({ depth }: StyleProps) => theme.spacing(depth / 2),
-      // marginLeft: ({ depth }: StyleProps) => depth * 4,
-      borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
-      '& $labelIcon': {},
-    },
-  },
-
-  // group: {
-  //   marginLeft: 7,
-  //   paddingLeft: 18,
-  //   borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
-  // },
   expanded: {},
   selected: {},
   label: {
@@ -108,6 +83,7 @@ const useTreeItemStyles = makeStyles((theme: Theme) => ({
   labelRoot: {
     color: 'inherit',
     display: 'flex',
+    justifyContent: 'space-between',
     alignItems: 'center',
     padding: theme.spacing(0.5, 0),
     '& button': {
@@ -125,6 +101,8 @@ const useTreeItemStyles = makeStyles((theme: Theme) => ({
 
 export function CustomTreeItem({
   children,
+  classes,
+  className,
 }: PropsWithChildren<CustomTreeItemProps>) {
   const {
     id,
@@ -135,8 +113,30 @@ export function CustomTreeItem({
     expanded: layer.expanded,
   }));
 
-  const classes = useTreeItemStyles({ depth });
-  const { displayName, hidden, actions, selected, topLevel } = useEditor(
+  const treeItemClasses = useTreeItemStyles({ depth });
+  const combinedClasses = {
+    root: clsx(treeItemClasses.root, Boolean(classes) ? classes.root : ''),
+    content: clsx(
+      treeItemClasses.content,
+      Boolean(classes) ? classes.content : ''
+    ),
+    expanded: clsx(
+      treeItemClasses.expanded,
+      Boolean(classes) ? classes.expanded : ''
+    ),
+    selected: clsx(
+      treeItemClasses.selected,
+      Boolean(classes) ? classes.selected : ''
+    ),
+    iconContainer: clsx(
+      treeItemClasses.iconContainer,
+      Boolean(classes) ? classes.iconContainer : ''
+    ),
+    group: clsx(treeItemClasses.group, Boolean(classes) ? classes.group : ''),
+    label: clsx(treeItemClasses.label, Boolean(classes) ? classes.label : ''),
+  };
+
+  const { displayName, hidden, actions, topLevel } = useEditor(
     (state, query) => {
       return {
         displayName:
@@ -154,16 +154,24 @@ export function CustomTreeItem({
     <TreeItem
       ref={layer}
       nodeId={id}
+      className={className}
       classes={{
-        root: classes.root,
-        content: classes.content,
-        expanded: classes.expanded,
-        selected: selected ? classes.selected : '',
-        group: classes.group,
-        label: classes.label,
+        root: combinedClasses.root,
+        content: combinedClasses.content,
+        expanded: combinedClasses.expanded,
+        selected: combinedClasses.selected,
+        iconContainer: combinedClasses.iconContainer,
+        group: combinedClasses.group,
+        label: combinedClasses.label,
       }}
       label={
-        <div className={classes.labelRoot} ref={drag}>
+        <div className={treeItemClasses.labelRoot} ref={drag}>
+          <div className="inner">
+            <div ref={layerHeader}>
+              {topLevel ? <LinkIcon /> : null}
+              <div className="layer-name s">{displayName}</div>
+            </div>
+          </div>
           <IconButton
             color="inherit"
             aria-label="toggle password visibility"
@@ -182,12 +190,6 @@ export function CustomTreeItem({
               <VisibilityOff fontSize="small" />
             )}
           </IconButton>
-          <div className="inner">
-            <div ref={layerHeader}>
-              {topLevel ? <LinkIcon /> : null}
-              <div className="layer-name s">{displayName}</div>
-            </div>
-          </div>
         </div>
       }
     >

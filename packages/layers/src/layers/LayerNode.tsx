@@ -40,16 +40,17 @@ function CloseSquare(props: SvgIconProps) {
   );
 }
 
-export const LayerNode: React.FC = () => {
+interface LayerNodeProps {
+  classes: object;
+  className: string;
+}
+
+export const LayerNode: React.FC<LayerNodeProps> = ({ classes, className }) => {
   const { id, depth, children, expanded } = useLayer((layer) => ({
     expanded: layer.expanded,
   }));
 
-  const { displayName, data, shouldBeExpanded } = useEditor((state, query) => ({
-    displayName:
-      state.nodes[id] && state.nodes[id].data.custom.displayName
-        ? state.nodes[id].data.custom.displayName
-        : state.nodes[id].data.displayName,
+  const { data, shouldBeExpanded } = useEditor((state, query) => ({
     data: state.nodes[id] && state.nodes[id].data,
     shouldBeExpanded:
       state.events.selected &&
@@ -98,10 +99,16 @@ export const LayerNode: React.FC = () => {
       >
         {React.createElement(
           renderLayer,
-          {},
+          { classes, className },
           children.length > 0
             ? children.map((id) => (
-                <LayerContextProvider key={id} id={id} depth={depth + 1} />
+                <LayerContextProvider
+                  className={className}
+                  classes={classes}
+                  key={id}
+                  id={id}
+                  depth={depth + 1}
+                />
               ))
             : null
         )}
