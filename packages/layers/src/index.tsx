@@ -5,10 +5,19 @@ import { ROOT_NODE } from '@pagezilla/utils';
 import { LayerOptions } from './interfaces';
 export { useLayer } from './layers';
 
-export const Layers: React.FC<Partial<LayerOptions>> = ({ ...options }) => {
+export const Layers: React.FC<{
+  options: Partial<LayerOptions>;
+  classes: object;
+  className: string;
+}> = ({ classes, options, className }) => {
   return (
     <LayerManagerProvider options={options}>
-      <LayerContextProvider id={ROOT_NODE} depth={0} />
+      <LayerContextProvider
+        className={className}
+        classes={classes}
+        id={ROOT_NODE}
+        depth={0}
+      />
     </LayerManagerProvider>
   );
 };
