@@ -6,14 +6,12 @@ import { useEditor, useEventHandler } from '@pagezilla/core';
 import { LayerManagerContext } from '../manager';
 
 interface LayerContextProviderProps extends Omit<LayerContext, 'connectors'> {
-  classes: object;
-  className: string;
+  classes?: object;
 }
 export const LayerContextProvider: React.FC<LayerContextProviderProps> = ({
   id,
   depth,
   classes,
-  className,
 }) => {
   const handler = useEventHandler();
 
@@ -33,7 +31,7 @@ export const LayerContextProvider: React.FC<LayerContextProviderProps> = ({
 
   return (
     <LayerContext.Provider value={{ id, depth, connectors }}>
-      <LayerNode classes={classes} className={className} />
+      <LayerNode classes={classes} />
     </LayerContext.Provider>
   );
 };

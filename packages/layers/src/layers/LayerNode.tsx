@@ -41,11 +41,10 @@ function CloseSquare(props: SvgIconProps) {
 }
 
 interface LayerNodeProps {
-  classes: object;
-  className: string;
+  classes?: object;
 }
 
-export const LayerNode: React.FC<LayerNodeProps> = ({ classes, className }) => {
+export const LayerNode: React.FC<LayerNodeProps> = ({ classes }) => {
   const { id, depth, children, expanded } = useLayer((layer) => ({
     expanded: layer.expanded,
   }));
@@ -99,11 +98,10 @@ export const LayerNode: React.FC<LayerNodeProps> = ({ classes, className }) => {
       >
         {React.createElement(
           renderLayer,
-          { classes, className },
+          { classes },
           children.length > 0
             ? children.map((id) => (
                 <LayerContextProvider
-                  className={className}
                   classes={classes}
                   key={id}
                   id={id}
