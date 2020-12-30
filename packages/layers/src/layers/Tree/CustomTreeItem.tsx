@@ -145,7 +145,6 @@ export function CustomTreeItem({
     couldNotHide,
   } = useEditor((state, query) => {
     return {
-      node: state.nodes[id],
       couldNotHide:
         state.nodes[id].data.parent === ROOT_NODE || id === ROOT_NODE,
       displayName:
