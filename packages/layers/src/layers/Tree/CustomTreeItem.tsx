@@ -86,9 +86,6 @@ const useTreeItemStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: theme.spacing(0.5, 0),
-    '& button': {
-      // padding: theme.spacing(0, 1),
-    },
   },
   labelIcon: {
     marginRight: theme.spacing(1),
