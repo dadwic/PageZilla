@@ -195,9 +195,9 @@ export class EventHandlers extends Handlers<
 /**
  *  Allows for external packages to easily extend EventHandlers
  */
-export abstract class DerivedEventHandlers<T extends string> extends Handlers<
-  T
-> {
+export abstract class DerivedEventHandlers<
+  T extends string
+> extends Handlers<T> {
   derived: EventHandlers;
 
   protected constructor(store: EditorStore, derived: EventHandlers) {
