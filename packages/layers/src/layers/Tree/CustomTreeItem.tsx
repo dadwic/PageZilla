@@ -87,7 +87,7 @@ const useTreeItemStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     padding: theme.spacing(0.5, 0),
     '& button': {
-      padding: theme.spacing(0, 1),
+      // padding: theme.spacing(0, 1),
     },
   },
   labelIcon: {
@@ -183,6 +183,7 @@ export function CustomTreeItem({
           {couldNotHide ? null : (
             <IconButton
               color="inherit"
+              size="small"
               aria-label="toggle password visibility"
               onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
                 event.preventDefault();
