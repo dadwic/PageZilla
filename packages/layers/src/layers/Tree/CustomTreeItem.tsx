@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
 
 import { useEditor } from '@pagezilla/core';
+import { ROOT_NODE } from '@pagezilla/utils';
 import { useLayer } from '../useLayer';
 
 declare module 'csstype' {
@@ -19,7 +20,6 @@ declare module 'csstype' {
 
 type CustomTreeItemProps = TreeItemProps & {
   classes?: object;
-  className?: boolean;
 };
 
 interface StyleProps {
@@ -86,9 +86,6 @@ const useTreeItemStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: theme.spacing(0.5, 0),
-    '& button': {
-      padding: theme.spacing(0, 1),
-    },
   },
   labelIcon: {
     marginRight: theme.spacing(1),
@@ -136,20 +133,28 @@ export function CustomTreeItem({
     label: clsx(treeItemClasses.label, Boolean(classes) ? classes.label : ''),
   };
 
-  const { displayName, hidden, actions, topLevel } = useEditor(
-    (state, query) => {
-      return {
-        displayName:
-          state.nodes[id] && state.nodes[id].data.custom.displayName
-            ? state.nodes[id].data.custom.displayName
-            : state.nodes[id].data.displayName,
-        hasChildCanvases: query.node(id).isParentOfTopLevelNodes(),
-        hidden: state.nodes[id] && state.nodes[id].data.hidden,
-        selected: state.events.selected === id,
-        topLevel: query.node(id).isTopLevelCanvas(),
-      };
-    }
-  );
+  const {
+    displayName,
+    hidden,
+    actions,
+    topLevel,
+    selected,
+    couldNotHide,
+  } = useEditor((state, query) => {
+    return {
+      couldNotHide:
+        state.nodes[id].data.parent === ROOT_NODE || id === ROOT_NODE,
+      displayName:
+        state.nodes[id] && state.nodes[id].data.custom.displayName
+          ? state.nodes[id].data.custom.displayName
+          : state.nodes[id].data.displayName,
+      hasChildCanvases: query.node(id).isParentOfTopLevelNodes(),
+      hidden: state.nodes[id] && state.nodes[id].data.hidden,
+      selected: state.events.selected === id,
+      topLevel: query.node(id).isTopLevelCanvas(),
+    };
+  });
+
   return (
     <TreeItem
       ref={layer}
@@ -159,7 +164,7 @@ export function CustomTreeItem({
         root: combinedClasses.root,
         content: combinedClasses.content,
         expanded: combinedClasses.expanded,
-        selected: combinedClasses.selected,
+        selected: selected ? combinedClasses.selected : '',
         iconContainer: combinedClasses.iconContainer,
         group: combinedClasses.group,
         label: combinedClasses.label,
@@ -172,24 +177,26 @@ export function CustomTreeItem({
               <div className="layer-name s">{displayName}</div>
             </div>
           </div>
-          <IconButton
-            color="inherit"
-            aria-label="toggle password visibility"
-            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-              event.preventDefault();
-              actions.setHidden(id, !hidden);
-            }}
-            // disabled={}
-            onMouseDown={(event: React.MouseEvent<HTMLButtonElement>) => {
-              event.preventDefault();
-            }}
-          >
-            {hidden ? (
-              <Visibility fontSize="small" />
-            ) : (
-              <VisibilityOff fontSize="small" />
-            )}
-          </IconButton>
+          {couldNotHide ? null : (
+            <IconButton
+              color="inherit"
+              size="small"
+              aria-label="toggle password visibility"
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                event.preventDefault();
+                actions.setHidden(id, !hidden);
+              }}
+              onMouseDown={(event: React.MouseEvent<HTMLButtonElement>) => {
+                event.preventDefault();
+              }}
+            >
+              {hidden ? (
+                <Visibility fontSize="small" />
+              ) : (
+                <VisibilityOff fontSize="small" />
+              )}
+            </IconButton>
+          )}
         </div>
       }
     >
