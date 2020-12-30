@@ -26,6 +26,6 @@ export type LayerState = {
   events: Record<LayerEvents, NodeId | null> & {
     indicator: LayerIndicator;
   };
-
+  classes: object;
   options: LayerOptions;
 };
