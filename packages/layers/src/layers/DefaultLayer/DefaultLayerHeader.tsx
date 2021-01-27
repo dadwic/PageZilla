@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       content: '""',
       position: 'absolute',
       left: ({ depth }: StyleProps) =>
-        depth === 0 ? 8 + 7 : theme.spacing(depth + 2) + depth * 7 - 1,
+        depth === 0 ? 10 + 12 + 7 : theme.spacing(depth * 2) + 12,
       bottom: 0,
       height: '100%',
       width: '1px',
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       flex: 1,
       display: 'flex',
       alignItems: 'center',
-      marginLeft: ({ depth }: StyleProps) => depth * 16,
+      marginLeft: ({ depth }: StyleProps) => theme.spacing(depth * 2),
       '&.layer-name': {
         flex: 1,
         '& h2': {
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   toggle: {
-    padding: theme.spacing(1, 1.5),
+    padding: theme.spacing(0.5, 1.5),
     cursor: 'pointer',
   },
   topLevelIndicator: {
