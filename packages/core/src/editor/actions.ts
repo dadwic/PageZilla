@@ -280,6 +280,11 @@ export const Actions = (
         state.nodes[current].events[eventType] = false;
       }
 
+      if (eventType === 'selected') {
+        console.log('setNodeEvent', id);
+        console.log('current', current);
+      }
+
       if (id) {
         state.nodes[id].events[eventType] = true;
         state.events[eventType] = id;

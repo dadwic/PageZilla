@@ -1,91 +1,76 @@
 import React from 'react';
-import { useEditor } from '@pagezilla/core';
-import styled from 'styled-components';
-import Eye from './svg/eye.svg';
-import Arrow from './svg/arrow.svg';
-import Linked from './svg/linked.svg';
+import { ROOT_NODE, useEditor } from '@pagezilla/core';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
+import Link from '@material-ui/core/Link';
+import { fade, makeStyles, Theme } from '@material-ui/core/styles';
+
+import MinusSquare from '../Icons/MinusSquare';
+import CloseSquare from '../Icons/CloseSquare';
+import PlusSquare from '../Icons/PlusSquare';
 import { useLayer } from '../useLayer';
 import { EditableLayerName } from './EditableLayerName';
 
-const StyledDiv = styled.div<{ depth: number; selected: boolean }>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 4px 10px;
-  background: ${(props) => (props.selected ? '#2680eb' : 'transparent')};
-  color: ${(props) => (props.selected ? '#fff' : 'inherit')};
-  svg {
-    fill: ${(props) => (props.selected ? '#fff' : '#808184')};
-    margin-top: 2px;
-  }
-  .inner {
-    flex: 1;
-    > div {
-      padding: 0px;
-      flex: 1;
-      display: flex;
-      margin-left: ${(props) => props.depth * 10}px;
-      align-items: center;
-      div.layer-name {
-        flex: 1;
-        h2 {
-          font-size: 15px;
-          line-height: 26px;
-        }
-      }
-    }
-  }
-`;
+interface StyleProps {
+  depth: number;
+  selected: boolean;
+}
 
-const Expand = styled.a<{ expanded: boolean }>`
-  width: 8px;
-  height: 8px;
-  display: block;
-  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-  transform: rotate(${(props) => (props.expanded ? 180 : 0)}deg);
-  opacity: 0.7;
-  cursor: pointer;
-  transform-origin: 60% center;
-`;
-
-const Hide = styled.a<{ selected: boolean; isHidden: boolean }>`
-  width: 14px;
-  height: 14px;
-  margin-right: 10px;
-  position: relative;
-  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-  cursor: pointer;
-
-  svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: ${(props) => (props.isHidden ? 0.2 : 1)};
-  }
-  &:after {
-    content: ' ';
-    width: 2px;
-    height: ${(props) => (props.isHidden ? 100 : 0)}%;
-    position: absolute;
-    left: 2px;
-    top: 3px;
-    background: ${(props) => (props.selected ? '#fff' : '#808184')};
-    transform: rotate(-45deg);
-    transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    transform-origin: 0% 0%;
-    opacity: ${(props) => (props.isHidden ? 0.4 : 1)};
-  }
-`;
-
-const TopLevelIndicator = styled.div`
-  margin-left: -22px;
-  margin-right: 10px;
-
-  svg {
-    width: 12px;
-    height: 12px;
-  }
-`;
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: '0px 10px',
+    background: ({ selected }: StyleProps) =>
+      selected ? '#2680eb' : 'transparent',
+    color: ({ selected }: StyleProps) => (selected ? '#fff' : 'inherit'),
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      left: ({ depth }: StyleProps) =>
+        depth === 0 ? 8 + 7 : theme.spacing(depth + 2) + depth * 7 - 1,
+      bottom: 0,
+      height: '100%',
+      width: '1px',
+      borderLeft: ({ depth }: StyleProps) =>
+        depth === 0
+          ? 'none'
+          : `1px solid ${fade(theme.palette.text.primary, 0.4)}`,
+      zIndex: 2,
+    },
+  },
+  inner: {
+    flex: 1,
+    '& > div': {
+      padding: 0,
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      marginLeft: ({ depth }: StyleProps) => depth * 16,
+      '&.layer-name': {
+        flex: 1,
+        '& h2': {
+          fontSize: 15,
+          lineHeight: 26,
+        },
+      },
+    },
+  },
+  toggle: {
+    padding: theme.spacing(1, 1.5),
+    cursor: 'pointer',
+  },
+  topLevelIndicator: {
+    marginLeft: -22,
+    marginRight: 10,
+    '& svg': {
+      width: 12,
+      height: 12,
+    },
+  },
+}));
 
 export const DefaultLayerHeader: React.FC = () => {
   const {
@@ -101,41 +86,73 @@ export const DefaultLayerHeader: React.FC = () => {
     };
   });
 
-  const { hidden, actions, selected, topLevel } = useEditor((state, query) => ({
-    hidden: state.nodes[id] && state.nodes[id].data.hidden,
-    selected: state.events.selected === id,
-    topLevel: query.node(id).isTopLevelCanvas(),
-  }));
+  const { hidden, actions, selected, topLevel, couldNotHide } = useEditor(
+    (state, query) => ({
+      couldNotHide:
+        state.nodes[id].data.parent === ROOT_NODE || id === ROOT_NODE,
+      hidden: state.nodes[id] && state.nodes[id].data.hidden,
+      selected: state.events.selected === id,
+      topLevel: query.node(id).isTopLevelCanvas(),
+    })
+  );
+  const classes = useStyles({ depth, selected });
 
   return (
-    <StyledDiv selected={selected} ref={drag} depth={depth}>
-      <Hide
-        selected={selected}
-        isHidden={hidden}
-        onClick={() => actions.setHidden(id, !hidden)}
-      >
-        <Eye />
-      </Hide>
-      <div className="inner">
+    <div className={classes.root} ref={drag}>
+      <div className={classes.inner}>
         <div ref={layerHeader}>
+          <div className={classes.toggle}>
+            {children && children.length ? (
+              expanded ? (
+                <MinusSquare
+                  onClick={(event: React.MouseEvent<any>) => {
+                    event.preventDefault();
+                    toggleLayer();
+                  }}
+                />
+              ) : (
+                <PlusSquare
+                  onClick={(event: React.MouseEvent<any>) => {
+                    event.preventDefault();
+                    toggleLayer();
+                  }}
+                />
+              )
+            ) : (
+              <CloseSquare />
+            )}
+          </div>
           {topLevel ? (
-            <TopLevelIndicator>
-              <Linked />
-            </TopLevelIndicator>
+            <div className={classes.topLevelIndicator}>
+              <Link />
+            </div>
           ) : null}
 
           <div className="layer-name s">
             <EditableLayerName />
           </div>
-          <div>
-            {children && children.length ? (
-              <Expand expanded={expanded} onMouseDown={() => toggleLayer()}>
-                <Arrow />
-              </Expand>
-            ) : null}
-          </div>
         </div>
       </div>
-    </StyledDiv>
+      {couldNotHide ? null : (
+        <IconButton
+          color="inherit"
+          size="small"
+          aria-label="toggle visibility"
+          onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+            event.preventDefault();
+            actions.setHidden(id, !hidden);
+          }}
+          onMouseDown={(event: React.MouseEvent<HTMLButtonElement>) => {
+            event.preventDefault();
+          }}
+        >
+          {hidden ? (
+            <Visibility fontSize="small" />
+          ) : (
+            <VisibilityOff fontSize="small" />
+          )}
+        </IconButton>
+      )}
+    </div>
   );
 };
