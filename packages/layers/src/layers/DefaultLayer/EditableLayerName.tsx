@@ -1,7 +1,26 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import ContentEditable from 'react-contenteditable';
+import React from 'react';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
 import { useEditor } from '@pagezilla/core';
 import { useLayer } from '../useLayer';
+
+const EditInput = withStyles({
+  root: {
+    '& .MuiInputBase-input': {
+      color: 'white',
+    },
+    '&:hover': {
+      '& .MuiInput-underline,& .MuiInput-underline:before,& .MuiInput-underline:after': {
+        border: 'none',
+      },
+    },
+    '& .MuiInput-underline,& .MuiInput-underline:before,& .MuiInput-underline:after': {
+      border: 'none',
+    },
+  },
+})(TextField);
 
 export const EditableLayerName = () => {
   const { id } = useLayer();
@@ -14,42 +33,34 @@ export const EditableLayerName = () => {
     hidden: state.nodes[id] && state.nodes[id].data.hidden,
   }));
 
-  const [editingName, setEditingName] = useState(false);
-  const nameDOM = useRef<HTMLElement | null>(null);
+  const [editingName, setEditingName] = React.useState(false);
 
-  const clickOutside = useCallback((e) => {
-    if (nameDOM.current && !nameDOM.current.contains(e.target)) {
-      setEditingName(false);
-    }
-  }, []);
+  const handleDoubleClick = () => {
+    setEditingName((prev) => !prev);
+  };
 
-  useEffect(() => {
-    return () => {
-      window.removeEventListener('click', clickOutside);
-    };
-  }, [clickOutside]);
+  const handleClickAway = () => {
+    setEditingName(false);
+  };
 
   return (
-    <ContentEditable
-      html={displayName}
-      disabled={!editingName}
-      ref={(ref: any) => {
-        if (ref) {
-          nameDOM.current = ref.el.current;
-          window.removeEventListener('click', clickOutside);
-          window.addEventListener('click', clickOutside);
-        }
-      }}
-      onChange={(e) => {
-        actions.setCustom(
-          id,
-          (custom) => (custom.displayName = e.target.value)
-        );
-      }}
-      tagName="h2"
-      onDoubleClick={() => {
-        if (!editingName) setEditingName(true);
-      }}
-    />
+    <ClickAwayListener onClickAway={handleClickAway}>
+      {editingName ? (
+        <EditInput
+          autoFocus
+          value={displayName}
+          onChange={(e) => {
+            actions.setCustom(
+              id,
+              (custom) => (custom.displayName = e.target.value)
+            );
+          }}
+        />
+      ) : (
+        <Typography variant="body1" onDoubleClick={handleDoubleClick}>
+          {displayName}
+        </Typography>
+      )}
+    </ClickAwayListener>
   );
 };
