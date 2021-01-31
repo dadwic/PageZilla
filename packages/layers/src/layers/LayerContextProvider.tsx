@@ -1,20 +1,15 @@
 import React, { useMemo, useContext } from 'react';
+import { useEditor, useEventHandler } from '@pagezilla/core';
 import { LayerContext } from './LayerContext';
 import { LayerNode } from './LayerNode';
 import { LayerHandlers } from '../events/LayerHandlers';
-import { useEditor, useEventHandler } from '@pagezilla/core';
 import { LayerManagerContext } from '../manager';
 
-interface LayerContextProviderProps extends Omit<LayerContext, 'connectors'> {
-  classes?: object;
-}
-export const LayerContextProvider: React.FC<LayerContextProviderProps> = ({
-  id,
-  depth,
-  classes,
-}) => {
+export const LayerContextProvider: React.FC<Omit<
+  LayerContext,
+  'connectors'
+>> = ({ id, depth }) => {
   const handler = useEventHandler();
-
   const { store } = useContext(LayerManagerContext);
   const connectors = useMemo(
     () => handler.derive(LayerHandlers, store, id).connectors(),
@@ -31,7 +26,7 @@ export const LayerContextProvider: React.FC<LayerContextProviderProps> = ({
 
   return (
     <LayerContext.Provider value={{ id, depth, connectors }}>
-      <LayerNode classes={classes} />
+      <LayerNode />
     </LayerContext.Provider>
   );
 };

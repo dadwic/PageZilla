@@ -10,6 +10,7 @@ const EditInput = withStyles({
   root: {
     '& .MuiInputBase-input': {
       color: 'white',
+      padding: '3px 0 2px',
     },
     '&:hover': {
       '& .MuiInput-underline,& .MuiInput-underline:before,& .MuiInput-underline:after': {
@@ -43,12 +44,19 @@ export const EditableLayerName = () => {
     setEditingName(false);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      setEditingName(false);
+    }
+  };
+
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       {editingName ? (
         <EditInput
           autoFocus
           value={displayName}
+          onKeyDown={handleKeyDown}
           onChange={(e) => {
             actions.setCustom(
               id,

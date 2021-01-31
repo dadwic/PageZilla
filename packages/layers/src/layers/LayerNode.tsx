@@ -1,16 +1,10 @@
 import React, { useRef, useEffect } from 'react';
-
-import { useEditor } from '@pagezilla/core';
-import { ROOT_NODE } from '@pagezilla/utils';
+import { useEditor, ROOT_NODE } from '@pagezilla/core';
 import { useLayerManager } from '../manager/useLayerManager';
 import { useLayer } from './useLayer';
 import { LayerContextProvider } from './LayerContextProvider';
 
-interface LayerNodeProps {
-  classes?: object;
-}
-
-export const LayerNode: React.FC<LayerNodeProps> = ({ classes }) => {
+export const LayerNode: React.FC = () => {
   const { id, depth, children, expanded } = useLayer((layer) => ({
     expanded: layer.expanded,
   }));

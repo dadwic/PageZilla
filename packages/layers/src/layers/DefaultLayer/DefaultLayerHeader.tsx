@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: '0px 10px',
+    padding: ' 4px 10px',
     background: ({ selected }: StyleProps) =>
       selected ? '#2680eb' : 'transparent',
     color: ({ selected }: StyleProps) => (selected ? '#fff' : 'inherit'),
@@ -59,6 +59,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   toggle: {
+    display: 'flex',
+    alignItems: 'center',
     padding: theme.spacing(0.5, 1.5),
     cursor: 'pointer',
   },
