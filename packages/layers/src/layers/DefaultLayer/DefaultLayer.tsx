@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { useLayer } from '../useLayer';
 import { DefaultLayerHeader } from './DefaultLayerHeader';
@@ -11,7 +11,6 @@ const LayerNodeDiv = styled.div<{
 }>`
   background: ${(props) => (props.hovered ? '#f1f1f1' : 'transparent')};
   display: block;
-  padding-bottom: ${(props) => (props.hasCanvases && props.expanded ? 5 : 0)}px;
 `;
 
 const LayerChildren = styled.div<{ hasCanvases: boolean }>`
@@ -19,6 +18,8 @@ const LayerChildren = styled.div<{ hasCanvases: boolean }>`
   background: 'transparent';
   position: relative;
 `;
+
+const MemoizedDefaultLayerHeader = memo(() => <DefaultLayerHeader />);
 
 export const DefaultLayer: React.FC = ({ children }) => {
   const {
@@ -43,7 +44,7 @@ export const DefaultLayer: React.FC = ({ children }) => {
       hasCanvases={hasChildCanvases}
       hovered={hovered}
     >
-      <DefaultLayerHeader />
+      <MemoizedDefaultLayerHeader />
       {children ? (
         <LayerChildren
           hasCanvases={hasChildCanvases}
