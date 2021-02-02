@@ -59,13 +59,15 @@ const StyledDiv = styled.div<{
 
 const ExpandWithChildren = styled.a<{
   expanded: boolean;
+  hasChildren: boolean;
 }>`
   width: 16px;
   height: 16px;
   display: flex;
   position: relative;
   &::before {
-    content: '${({ expanded }) => (expanded ? '\\229F' : '\\229E')}';
+    content: '${({ expanded, hasChildren }) =>
+      hasChildren ? (expanded ? '\\229F' : '\\229E') : '\\22A0'}';
     position: absolute;
     font-size:1.25rem;
     transform: translate(-50%, -50%);
@@ -74,21 +76,7 @@ const ExpandWithChildren = styled.a<{
     z-index: 2;
   }
 `;
-const CloseSquare = styled.a`
-  width: 16px;
-  height: 16px;
-  display: flex;
-  position: relative;
-  &::before {
-    content: '\\22A0';
-    position: absolute;
-    font-size: 1.25rem;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    z-index: 2;
-  }
-`;
+
 export const DefaultLayerHeader: React.FC = () => {
   const {
     id,
@@ -115,19 +103,20 @@ export const DefaultLayerHeader: React.FC = () => {
       <div className="inner">
         <div ref={layerHeader}>
           <div className="toggle">
-            {hasChildren ? (
-              <ExpandWithChildren
-                expanded={expanded}
-                onClick={(event: React.MouseEvent<any>) => {
-                  if (hasChildren) {
-                    event.preventDefault();
-                    toggleLayer();
-                  }
-                }}
-              />
-            ) : (
+            {/* {hasChildren ? ( */}
+            <ExpandWithChildren
+              expanded={expanded}
+              hasChildren={hasChildren}
+              onClick={(event: React.MouseEvent<any>) => {
+                if (hasChildren) {
+                  event.preventDefault();
+                  toggleLayer();
+                }
+              }}
+            />
+            {/* ) : (
               <CloseSquare />
-            )}
+            )} */}
           </div>
           {topLevel ? <Link /> : null}
           <div className="layer-name s">
