@@ -1,7 +1,7 @@
 import { useContext, useMemo } from 'react';
+import { useEditor } from '@pagezilla/core';
 import { LayerContext } from './LayerContext';
 import { useLayerManager } from '../manager';
-import { useEditor } from '@pagezilla/core';
 import { Layer } from '../interfaces';
 
 type internalActions = LayerContext & {

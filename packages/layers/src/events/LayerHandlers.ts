@@ -182,8 +182,20 @@ export class LayerHandlers extends DerivedEventHandlers<
           };
         },
         events: [
-          defineEventListener('dragstart', (e: CraftDOMEvent<MouseEvent>) => {
+          defineEventListener('dragstart', (e: CraftDOMEvent<DragEvent>) => {
             e.craft.stopPropagation();
+            const shadow = (e.target as HTMLElement).cloneNode(
+              true
+            ) as HTMLElement;
+            shadow.style.width = '280px';
+            shadow.style.height = '32px';
+            shadow.style.position = 'fixed';
+            shadow.style.left = '-100%';
+            shadow.style.top = '-100%';
+
+            document.body.appendChild(shadow);
+            e.dataTransfer.setDragImage(shadow, 0, 0);
+
             LayerHandlers.draggedElement = this.id;
           }),
           defineEventListener('dragend', (e: CraftDOMEvent<MouseEvent>, id) => {

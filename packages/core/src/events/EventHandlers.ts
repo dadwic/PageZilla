@@ -99,6 +99,7 @@ export class EventHandlers extends Handlers<
             'dragstart',
             (e: CraftDOMEvent<DragEvent>, id: NodeId) => {
               e.craft.stopPropagation();
+
               this.store.actions.setNodeEvent('dragged', id);
 
               EventHandlers.draggedElementShadow = createShadow(e);
