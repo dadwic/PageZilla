@@ -1,10 +1,12 @@
-import { NodeId, Node, DerivedEventHandlers } from '@pagezilla/core';
-import { LayerIndicator } from 'interfaces';
 import {
+  NodeId,
+  Node,
+  DerivedEventHandlers,
+  CraftDOMEvent,
   ConnectorsForHandlers,
   defineEventListener,
-  CraftDOMEvent,
-} from '@pagezilla/utils';
+} from '@pagezilla/core';
+import { LayerIndicator } from 'interfaces';
 
 export class LayerHandlers extends DerivedEventHandlers<
   'layer' | 'layerHeader' | 'drag'

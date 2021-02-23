@@ -47,7 +47,7 @@ export const Events: React.FC = ({ children }) => {
             backgroundColor: indicator.error
               ? indicatorOptions.error
               : indicatorOptions.success,
-            transition: '0.2s ease-in',
+            transition: '0.1s ease-in',
           },
           parentDom: indicator.placement.parent.dom,
         })}
