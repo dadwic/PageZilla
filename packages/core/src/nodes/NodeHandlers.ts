@@ -1,5 +1,5 @@
 import { DerivedEventHandlers } from '../events';
-import { ConnectorsForHandlers } from '@pagezilla/utils';
+import { ConnectorsForHandlers } from '../utils/Handlers';
 
 /**
  * Creates Node-specific event handlers and connectors
@@ -17,10 +17,7 @@ export class NodeHandlers extends DerivedEventHandlers<'connect' | 'drag'> {
     return {
       connect: {
         init: (el) => {
-          parentConnectors.select(el, this.id);
-          parentConnectors.hover(el, this.id);
-          parentConnectors.drop(el, this.id);
-          this.store.actions.setDOM(this.id, el);
+          parentConnectors.connect(el, this.id);
         },
       },
       drag: {

@@ -5,9 +5,10 @@ import { LayerNode } from './LayerNode';
 import { LayerHandlers } from '../events/LayerHandlers';
 import { LayerManagerContext } from '../manager';
 
-export const LayerContextProvider: React.FC<
-  Omit<LayerContext, 'connectors'>
-> = ({ id, depth }) => {
+export const LayerContextProvider: React.FC<Omit<
+  LayerContext,
+  'connectors'
+>> = ({ id, depth }) => {
   const handler = useEventHandler();
   const { store } = useContext(LayerManagerContext);
   const connectors = useMemo(

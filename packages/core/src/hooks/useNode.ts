@@ -1,9 +1,10 @@
+import { deprecationWarning } from '@pagezilla/utils';
+
 import { Node } from '../interfaces';
 import {
   useInternalNode,
   useInternalNodeReturnType,
 } from '../nodes/useInternalNode';
-import { deprecationWarning } from '@pagezilla/utils';
 
 export type useNodeReturnType<S = null> = useInternalNodeReturnType<S> &
   Pick<useInternalNodeReturnType<S>['actions'], 'setProp'>;
