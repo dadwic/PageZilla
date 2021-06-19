@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
-    "@pagezilla/core": "^0.1.1",
+    "@pagezilla/core": "^0.1.0-beta.57",
     "clsx": "latest",
     "copy-to-clipboard": "^3.2.0",
     "lzutf8": "^0.5.5",
