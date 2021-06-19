@@ -1,7 +1,7 @@
 {
   "name": "@pagezilla/utils",
   "description": "Utilities used internally across the craft.js monorepo",
-  "version": "0.1.0-beta.57",
+  "version": "0.1.0-beta.58",
   "author": "Mehrdad Mehralian <dadwic0@gmail.com>",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
