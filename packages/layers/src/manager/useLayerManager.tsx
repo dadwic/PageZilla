@@ -1,18 +1,17 @@
-import { useCollector } from '@pagezilla/utils';
+import { useCollector, useCollectorReturnType } from '@pagezilla/utils';
 import { useContext } from 'react';
-import { LayerManagerContext } from './context';
+
+import { LayerManagerContext, LayerStore } from './context';
+
 import { LayerState } from '../interfaces';
-import { LayerMethods } from './actions';
 
-export function useLayerManager(): useCollector<typeof LayerMethods, null>;
-
+export function useLayerManager(): useCollectorReturnType<LayerStore>;
 export function useLayerManager<C>(
   collector?: (state: LayerState) => C
-): useCollector<typeof LayerMethods, null, C>;
-
+): useCollectorReturnType<LayerStore, C>;
 export function useLayerManager<C>(
   collector?: (state: LayerState) => C
-): useCollector<typeof LayerMethods, null> {
+): useCollectorReturnType<LayerStore> {
   const { store } = useContext(LayerManagerContext);
   return useCollector(store, collector);
 }

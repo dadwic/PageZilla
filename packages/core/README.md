@@ -1,11 +1,11 @@
 
 <div align="center" style={{d}}>
-<h1>PageZilla</h1>
+<h1>craft.js</h1>
 <a href="https://www.npmjs.com/package/@pagezilla/core">
   <img src="https://img.shields.io/npm/v/@pagezilla/core?color=%232680eb&label=NPM&logo=npm&logoColor=%232680eb&style=for-the-badge">
 </a>
 <img src="https://img.shields.io/npm/l/@pagezilla/core?color=%23000&style=for-the-badge">
-<img src="https://img.shields.io/github/workflow/status/dadwic/PageZilla/Deploy to gh-pages?style=for-the-badge">
+<img src="https://img.shields.io/github/workflow/status/dadwic/craft.js/Deploy to gh-pages?style=for-the-badge">
 </div>
 
 <div align="center" style={{d}}>
@@ -14,7 +14,7 @@
 
 <p align="center">
   <strong>
-    <a href="https://dadwic.github.io/PageZilla/">Live Demo</a>
+    <a href="https://dadwic.github.io/craft.js/">Live Demo</a>
   </strong>
 </p>
 
@@ -22,20 +22,20 @@ Page editors are a great way to provide an excellent user experience. However, t
 
 There're existing libraries that come with a fully working page editor out of the box with a user interface and editable components. However, if you wish to make customisations such as modifying the user interface and its behavior, it will most definitely involve modifying the library itself.
 
-PageZilla solves this problem by modularising the building blocks of a page editor. It ships with a drag-n-drop system and handles the way user components should be rendered, updated and moved - among other things. With this, you'll be able to build your own page editor exactly how you want it to look and behave.
+Craft.js solves this problem by modularising the building blocks of a page editor. It ships with a drag-n-drop system and handles the way user components should be rendered, updated and moved - among other things. With this, you'll be able to build your own page editor exactly how you want it to look and behave.
 
 ## Docs
-- [Core concepts](https://dadwic.github.io/PageZilla/r/docs/concepts/nodes)
-- [Tutorial](https://dadwic.github.io/PageZilla/r/docs/guides/basic-tutorial)
-- [API Reference](https://dadwic.github.io/PageZilla/r/docs/api/editor-state)
+- [Core concepts](https://dadwic.github.io/craft.js/r/docs/concepts/nodes)
+- [Tutorial](https://dadwic.github.io/craft.js/r/docs/guides/basic-tutorial)
+- [API Reference](https://dadwic.github.io/craft.js/r/docs/api/editor-state)
 
 ## Examples
-These examples should give you an idea on the flexibility of PageZilla.
+These examples should give you an idea on the flexibility of Craft.js.
 
-Both these examples look very different from each other, with very different UI. But they are both built with PageZilla! 🤯
+Both these examples look very different from each other, with very different UI. But they are both built with Craft.js! 🤯
 
-- [Landing](https://dadwic.github.io/PageZilla)
-- [Basic](https://dadwic.github.io/PageZilla/examples/basic)
+- [Landing](https://dadwic.github.io/craft.js)
+- [Basic](https://dadwic.github.io/craft.js/examples/basic)
 
 
 ## Features :fire:
@@ -79,7 +79,7 @@ const App = () => {
 ```
 
 ### Control how your components are edited
-An obvious requirement for page editors is that they need to allow users to edit components. With PageZilla, you control the process of which these components should be edited.
+An obvious requirement for page editors is that they need to allow users to edit components. With Craft.js, you control the process of which these components should be edited.
 
 In the following example, when the user clicks on a component, we'll display a modal that requires the user to input a value for the `text` prop. As the input value changes, the component will be re-rendered with updated prop.
 
@@ -116,7 +116,7 @@ With this, you could easily implement content editable text or drag-to-resize co
 ### User components with droppable regions
 Let's say we need a "Container" component which users can drop into the editor. Additionally, we would also like them to be able to drag and drop other components into the Container.
 
-In PageZilla, it's as simple as calling the `<Canvas />`
+In Craft.js, it's as simple as calling the `<Canvas />`
 
 ```jsx
 import {useNode} from "@pagezilla/core";
@@ -135,7 +135,7 @@ const Container = () => {
 ```
 
 ### Extensible
-PageZilla provides an expressive API which allows you to easily read and manipulate the editor state. Let's say you would like to implement a copy function for a component:
+Craft.js provides an expressive API which allows you to easily read and manipulate the editor state. Let's say you would like to implement a copy function for a component:
 ```jsx
 import {useEditor, useNode} from "@pagezilla/core";
 const Container = () => {
@@ -168,7 +168,7 @@ const SaveButton = () => {
 }
 ```
 
-Of course, PageZilla will also able to recreate the entire state from the JSON string.
+Of course, Craft.js will also able to recreate the entire state from the JSON string.
 ```jsx
 const App = () => {
   const jsonString = /* retrieve JSON from server */
@@ -184,24 +184,24 @@ const App = () => {
 
 ## Who is this for? 🤔
 You should use this if:
-- ✅ You want to design your page editor according to your own UI specifications. With PageZilla, you control almost every aspect of the look and feel of your page editor.
+- ✅ You want to design your page editor according to your own UI specifications. With Craft.js, you control almost every aspect of the look and feel of your page editor.
 - ✅ You like the React ecosystem. Being a React framework, not only do you get to build your user interface declaratively, but you will also be able to extend upon thousands of existing React components for your page editor.
 - ✅ You're the coolest kid in class 😎
 
 You should not use this if:
-- ❌ You need a page editor that works out of the box. PageZilla is an abstraction where you implement your own page editor upon. For example, it does not come with a ready-made user interface.
-  - However, you could still consider using the [examples](https://github.com/dadwic/PageZilla/tree/master/packages/examples) as a starting point.
+- ❌ You need a page editor that works out of the box. Craft.js is an abstraction where you implement your own page editor upon. For example, it does not come with a ready-made user interface.
+  - However, you could still consider using the [examples](https://github.com/dadwic/craft.js/tree/master/packages/examples) as a starting point.
 
 
 ## Additional Packages :tada:
-- **[@pagezilla/layers](https://github.com/dadwic/PageZilla/tree/master/packages/layers)** A Photoshop-like layers panel
+- **[@pagezilla/layers](https://github.com/dadwic/craft.js/tree/master/packages/layers)** A Photoshop-like layers panel
 
 ## Acknowledgements :raised_hands:
 
 - **[react-dnd](https://github.com/react-dnd/react-dnd)** The React drag-n-drop library.
-Although it is not actually used here, many aspects of PageZilla are written with react-dnd as a reference along with some utilities and functions being borrowed.
-- **[Grape.js](https://github.com/artf/grapesjs)** The HTML web builder framework. This has served as an inspiration for PageZilla. The element positioning logic used in PageZilla is borrowed from Grape.js
-- **[use-methods](https://github.com/pelotom/use-methods)** A super handy hook when dealing with reducers. PageZilla uses a slightly modified version of `use-methods` to better fit our API.
+Although it is not actually used here, many aspects of Craft.js are written with react-dnd as a reference along with some utilities and functions being borrowed.
+- **[Grape.js](https://github.com/artf/grapesjs)** The HTML web builder framework. This has served as an inspiration for Craft.js. The element positioning logic used in Craft.js is borrowed from Grape.js
+- **[use-methods](https://github.com/pelotom/use-methods)** A super handy hook when dealing with reducers. Craft.js uses a slightly modified version of `use-methods` to better fit our API.
 
 
 ## Getting Help :wave:
@@ -210,27 +210,27 @@ If you have questions or there's something you'd like to discuss (eg: contributi
 
 ## Contributors ✨
 
-PageZilla is made with :heart: by these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Craft.js is made with :heart: by these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/dadwic"><img src="https://avatars2.githubusercontent.com/u/13819774?v=4" width="100px;" alt=""/><br /><sub><b>Mehrdad Mehralian</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/commits?author=dadwic" title="Code">💻</a> <a href="#design-dadwic" title="Design">🎨</a> <a href="https://github.com/dadwic/PageZilla/commits?author=dadwic" title="Documentation">📖</a> <a href="#ideas-dadwic" title="Ideas, Planning, & Feedback">🤔</a> <a href="#example-dadwic" title="Examples">💡</a></td>
-    <td align="center"><a href="https://github.com/azreenashah"><img src="https://avatars0.githubusercontent.com/u/26489181?v=4" width="100px;" alt=""/><br /><sub><b>azreenashah</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/commits?author=azreenashah" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/fengzilong"><img src="https://avatars0.githubusercontent.com/u/9125255?v=4" width="100px;" alt=""/><br /><sub><b>MO</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/commits?author=fengzilong" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/ankri"><img src="https://avatars3.githubusercontent.com/u/2842920?v=4" width="100px;" alt=""/><br /><sub><b>Andy Krings-Stern</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/commits?author=ankri" title="Code">💻</a> <a href="https://github.com/dadwic/PageZilla/commits?author=ankri" title="Documentation">📖</a> <a href="#ideas-ankri" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://dackdive.hateblo.jp/"><img src="https://avatars0.githubusercontent.com/u/1001444?v=4" width="100px;" alt=""/><br /><sub><b>Shingo Yamazaki</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/commits?author=zaki-yama" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://joelschneider.com"><img src="https://avatars0.githubusercontent.com/u/3977552?v=4" width="100px;" alt=""/><br /><sub><b>Joel Schneider</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/issues?q=author%3Ajmschneider" title="Bug reports">🐛</a> <a href="https://github.com/dadwic/PageZilla/commits?author=jmschneider" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/dadwic"><img src="https://avatars3.githubusercontent.com/u/16416929?v=4" width="100px;" alt=""/><br /><sub><b>Mehrdad Mehralian</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/commits?author=dadwic" title="Code">💻</a> <a href="#design-dadwic" title="Design">🎨</a> <a href="https://github.com/dadwic/craft.js/commits?author=dadwic" title="Documentation">📖</a> <a href="#ideas-dadwic" title="Ideas, Planning, & Feedback">🤔</a> <a href="#example-dadwic" title="Examples">💡</a></td>
+    <td align="center"><a href="https://github.com/azreenashah"><img src="https://avatars0.githubusercontent.com/u/26489181?v=4" width="100px;" alt=""/><br /><sub><b>azreenashah</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/commits?author=azreenashah" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/fengzilong"><img src="https://avatars0.githubusercontent.com/u/9125255?v=4" width="100px;" alt=""/><br /><sub><b>MO</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/commits?author=fengzilong" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/ankri"><img src="https://avatars3.githubusercontent.com/u/2842920?v=4" width="100px;" alt=""/><br /><sub><b>Andy Krings-Stern</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/commits?author=ankri" title="Code">💻</a> <a href="https://github.com/dadwic/craft.js/commits?author=ankri" title="Documentation">📖</a> <a href="#ideas-ankri" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://dackdive.hateblo.jp/"><img src="https://avatars0.githubusercontent.com/u/1001444?v=4" width="100px;" alt=""/><br /><sub><b>Shingo Yamazaki</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/commits?author=zaki-yama" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://joelschneider.com"><img src="https://avatars0.githubusercontent.com/u/3977552?v=4" width="100px;" alt=""/><br /><sub><b>Joel Schneider</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/issues?q=author%3Ajmschneider" title="Bug reports">🐛</a> <a href="https://github.com/dadwic/craft.js/commits?author=jmschneider" title="Documentation">📖</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/Enva2712"><img src="https://avatars0.githubusercontent.com/u/18131608?v=4" width="100px;" alt=""/><br /><sub><b>Evan Rusmisel</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/commits?author=Enva2712" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://www.candu.ai"><img src="https://avatars0.githubusercontent.com/u/1311832?v=4" width="100px;" alt=""/><br /><sub><b>Michele Riccardo Esposito</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/commits?author=mresposito" title="Code">💻</a> <a href="#ideas-mresposito" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/matdru"><img src="https://avatars1.githubusercontent.com/u/4158076?v=4" width="100px;" alt=""/><br /><sub><b>Mateusz Drulis</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/commits?author=matdru" title="Code">💻</a> <a href="#ideas-matdru" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/sprabowo"><img src="https://avatars2.githubusercontent.com/u/11748183?v=4" width="100px;" alt=""/><br /><sub><b>Sigit Prabowo</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/issues?q=author%3Asprabowo" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="http://vjsrinath.com"><img src="https://avatars0.githubusercontent.com/u/5001683?v=4" width="100px;" alt=""/><br /><sub><b>Srinath Janakiraman</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/commits?author=vjsrinath" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/boqiaok"><img src="https://avatars1.githubusercontent.com/u/15731814?v=4" width="100px;" alt=""/><br /><sub><b>Kim</b></sub></a><br /><a href="https://github.com/dadwic/PageZilla/issues?q=author%3Aboqiaok" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/Enva2712"><img src="https://avatars0.githubusercontent.com/u/18131608?v=4" width="100px;" alt=""/><br /><sub><b>Evan Rusmisel</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/commits?author=Enva2712" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.candu.ai"><img src="https://avatars0.githubusercontent.com/u/1311832?v=4" width="100px;" alt=""/><br /><sub><b>Michele Riccardo Esposito</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/commits?author=mresposito" title="Code">💻</a> <a href="#ideas-mresposito" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/matdru"><img src="https://avatars1.githubusercontent.com/u/4158076?v=4" width="100px;" alt=""/><br /><sub><b>Mateusz Drulis</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/commits?author=matdru" title="Code">💻</a> <a href="#ideas-matdru" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/sprabowo"><img src="https://avatars2.githubusercontent.com/u/11748183?v=4" width="100px;" alt=""/><br /><sub><b>Sigit Prabowo</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/issues?q=author%3Asprabowo" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://vjsrinath.com"><img src="https://avatars0.githubusercontent.com/u/5001683?v=4" width="100px;" alt=""/><br /><sub><b>Srinath Janakiraman</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/commits?author=vjsrinath" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/boqiaok"><img src="https://avatars1.githubusercontent.com/u/15731814?v=4" width="100px;" alt=""/><br /><sub><b>Kim</b></sub></a><br /><a href="https://github.com/dadwic/craft.js/issues?q=author%3Aboqiaok" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
@@ -243,7 +243,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## Support :heart_decoration:
 
-PageZilla is released under the [MIT license](https://github.com/dadwic/PageZilla/blob/master/LICENSE) and is built with 100% love. If you found it useful and would like to ensure its continued development, please consider becoming a backer/sponsor or making a one-time donation via <a href="https://opencollective.com/pagezilla/contribute" target="_blank">Open Collective</a> or <a href="https://paypal.me/dadwic" target="_blank">Paypal</a>.
+Craft.js is released under the [MIT license](https://github.com/dadwic/craft.js/blob/master/LICENSE) and is built with 100% love. If you found it useful and would like to ensure its continued development, please consider becoming a backer/sponsor or making a one-time donation via <a href="https://opencollective.com/pagezilla/contribute" target="_blank">Open Collective</a> or <a href="https://paypal.me/dadwic" target="_blank">Paypal</a>.
 
 
 <a href="https://opencollective.com/pagezilla/contribute" target="_blank">

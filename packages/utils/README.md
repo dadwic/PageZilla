@@ -1,3 +1,3 @@
 # @pagezilla/utils
 
-Internal package containing common utilities used across the [PageZilla](https://github.com/dadwic/PageZilla) monorepo.
+Internal package containing common utilities used across the [Craft.js](https://github.com/dadwic/craft.js) monorepo.

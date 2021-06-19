@@ -1,5 +1,5 @@
-import React from 'react';
 import { Indicator, useEditor } from '@pagezilla/core';
+import React from 'react';
 
 export type Placeholder = {
   placeholder: Indicator;

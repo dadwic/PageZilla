@@ -15,23 +15,24 @@
     "wysiwyg",
     "html"
   ],
-  "author": "Mehrdad Mehralian <dadwic@yahoo.com>",
-  "homepage": "https://github.com/dadwic/PageZilla/",
+  "author": "Mehrdad Mehralian <dadwic0@gmail.com>",
+  "homepage": "https://github.com/dadwic/craft.js/",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dadwic/PageZilla/"
+    "url": "https://github.com/dadwic/craft.js/"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development ../../scripts/build.sh",
     "build": "cross-env NODE_ENV=production ../../scripts/build.sh",
+    "dev:yalc": "../../scripts/yalc.sh",
     "clean": "rimraf lib dist"
   },
   "bugs": {
-    "url": "https://github.com/dadwic/PageZilla/issues"
+    "url": "https://github.com/dadwic/craft.js/issues"
   },
   "dependencies": {
     "@pagezilla/utils": "^0.1.0-beta.57",
@@ -43,7 +44,7 @@
     "tiny-invariant": "^1.0.6"
   },
   "devDependencies": {
-    "react": "^16.8.0"
+    "react": "^17.0.2"
   },
   "peerDependencies": {
     "react": "^16.8.0"

@@ -10,7 +10,9 @@
       "@pagezilla/*": ["packages/core/src/*"],
       "@pagezilla/layers": ["packages/layers/src/index"],
       "@pagezilla/utils": ["packages/utils/src/index"],
-      "@pagezilla/utils/*": ["packages/utils/src/*"]
+      "@pagezilla/utils/*": ["packages/utils/src/*"],
+      "@pagezilla/slate": ["packages/slate/src/*"],
+      "@pagezilla/slate/*": ["packages/slate/src/*"]
     }
   },
   "exclude": ["**/node_modules/**"]

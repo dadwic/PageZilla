@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help improve PageZilla
+about: Create a report to help improve Craft.js
 title: ""
 labels: ""
 assignees: ""
@@ -30,7 +30,7 @@ Add any other context about the problem here.
 
 | Software         | Version(s) |
 | ---------------- | ---------- |
-| PageZilla        |
+| craft.js         |
 | React            |
 | TypeScript       |
 | Browser          |

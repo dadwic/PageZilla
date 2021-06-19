@@ -1,16 +1,18 @@
-import React from 'react';
-import { EventManager } from '../events';
 import { useMethods } from '@pagezilla/utils';
+import React from 'react';
+
 import { LayerMethods } from './actions';
+import { LayerManagerContext, LayerStore } from './context';
+
+import { EventManager } from '../events';
 import { LayerOptions } from '../interfaces';
-import { LayerManagerContext } from './context';
 import { DefaultLayer } from '../layers';
-// import { CustomTreeItem } from '../layers';
 
 export const LayerManagerProvider: React.FC<{
   options: Partial<LayerOptions>;
 }> = ({ children, options }) => {
-  const store: any = useMethods(LayerMethods, {
+  // TODO: fix type
+  const store = useMethods(LayerMethods, {
     layers: {},
     events: {
       selected: null,
@@ -19,10 +21,9 @@ export const LayerManagerProvider: React.FC<{
     },
     options: {
       renderLayer: DefaultLayer,
-      // renderLayer: CustomTreeItem,
       ...options,
     },
-  });
+  }) as LayerStore;
 
   return (
     <LayerManagerContext.Provider value={{ store }}>
