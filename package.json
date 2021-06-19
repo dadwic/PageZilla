@@ -116,11 +116,5 @@
       "npm run lint",
       "git add"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "jest"
-    }
   }
 }
