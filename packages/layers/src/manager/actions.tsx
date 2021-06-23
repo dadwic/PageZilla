@@ -1,4 +1,4 @@
-import { LayerState, LayerEvents } from '../interfaces';
+import { LayerState, LayerEvents, Layer } from '../interfaces';
 
 export const LayerMethods = (state: LayerState) => ({
   setLayerEvent: (eventType: LayerEvents, id: string) => {
@@ -19,15 +19,13 @@ export const LayerMethods = (state: LayerState) => ({
   registerLayer: (id: string) => {
     if (!state.layers[id]) {
       state.layers[id] = {
-        dom: null,
-        headingDom: null,
         expanded: false,
         id,
         event: {
           selected: false,
           hovered: false,
         },
-      };
+      } as Layer;
     }
   },
   setDOM: (

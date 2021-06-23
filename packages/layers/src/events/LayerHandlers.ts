@@ -1,11 +1,18 @@
-import { NodeId, Node, DerivedCoreEventHandlers } from '@pagezilla/core';
+import {
+  NodeId,
+  Node,
+  DerivedEventHandlers,
+  CraftDOMEvent,
+  ConnectorsForHandlers,
+  defineEventListener,
+} from '@pagezilla/core';
+import { LayerIndicator } from 'interfaces';
 
-import { LayerIndicator } from '../interfaces';
-
-export class LayerHandlers extends DerivedCoreEventHandlers<{
-  layerStore: any;
-  layerId: NodeId;
-}> {
+export class LayerHandlers extends DerivedEventHandlers<
+  'layer' | 'layerHeader' | 'drag'
+> {
+  private id;
+  private layerStore;
   static draggedElement;
   static events: {
     indicator: LayerIndicator;
@@ -16,38 +23,38 @@ export class LayerHandlers extends DerivedCoreEventHandlers<{
   };
   static currentCanvasHovered;
 
+  constructor(store, derived, layerStore, layerId) {
+    super(store, derived);
+    this.id = layerId;
+    this.layerStore = layerStore;
+  }
+
   getLayer(id) {
-    return this.options.layerStore.getState().layers[id];
+    return this.layerStore.getState().layers[id];
   }
 
   handlers() {
-    const editorStore = this.derived.options.store;
-    const { layerStore, layerId } = this.options;
+    const parentConnectors = this.derived.connectors();
     return {
-      layer: (el: HTMLElement) => {
-        const cleanupParentConnectors = this.inherit((connectors) => {
-          connectors.select(el, layerId);
-          connectors.hover(el, layerId);
-          connectors.drag(el, layerId);
+      layer: {
+        init: (el) => {
+          parentConnectors.select(el, this.id);
+          parentConnectors.hover(el, this.id);
+          parentConnectors.drag(el, this.id);
 
-          layerStore.actions.setDOM(layerId, {
+          this.layerStore.actions.setDOM(this.id, {
             dom: el,
           });
-        });
-
-        const unbindMouseOver = this.addCraftEventListener(
-          el,
-          'mouseover',
-          (e) => {
-            e.craft.stopPropagation();
-            layerStore.actions.setLayerEvent('hovered', layerId);
-          }
-        );
-
-        const unbindDragOver = this.addCraftEventListener(
-          el,
-          'dragover',
-          (e) => {
+        },
+        events: [
+          defineEventListener(
+            'mouseover',
+            (e: CraftDOMEvent<MouseEvent>, id) => {
+              e.craft.stopPropagation();
+              this.layerStore.actions.setLayerEvent('hovered', id);
+            }
+          ),
+          defineEventListener('dragover', (e: CraftDOMEvent<DragEvent>) => {
             e.craft.stopPropagation();
             e.preventDefault();
 
@@ -70,32 +77,27 @@ export class LayerHandlers extends DerivedCoreEventHandlers<{
                   currentCanvasHovered.data.nodes[
                     currentCanvasHovered.data.nodes.length - 1
                   ];
-
-                if (!currNode) {
-                  return;
-                }
+                if (!currNode) return;
+                indicator.placement.currentNode = this.store.query
+                  .node(currNode)
+                  .get();
+                indicator.placement.index =
+                  currentCanvasHovered.data.nodes.length;
+                indicator.placement.where = 'after';
+                indicator.placement.parent = currentCanvasHovered;
 
                 LayerHandlers.events.indicator = {
                   ...indicator,
-                  placement: {
-                    currentNode: editorStore.query.node(currNode).get(),
-                    index: currentCanvasHovered.data.nodes.length,
-                    where: 'after',
-                    parent: currentCanvasHovered,
-                  },
                   onCanvas: true,
                 };
 
-                layerStore.actions.setIndicator(LayerHandlers.events.indicator);
+                this.layerStore.actions.setIndicator(
+                  LayerHandlers.events.indicator
+                );
               }
             }
-          }
-        );
-
-        const unbindDragEnter = this.addCraftEventListener(
-          el,
-          'dragenter',
-          (e) => {
+          }),
+          defineEventListener('dragenter', (e: CraftDOMEvent<DragEvent>) => {
             e.craft.stopPropagation();
             e.preventDefault();
 
@@ -103,9 +105,9 @@ export class LayerHandlers extends DerivedCoreEventHandlers<{
 
             if (!dragId) return;
 
-            let target = layerId;
+            let target = this.id;
 
-            const indicatorInfo = editorStore.query.getDropPlaceholder(
+            const indicatorInfo = this.store.query.getDropPlaceholder(
               dragId,
               target,
               { x: e.clientX, y: e.clientY },
@@ -124,12 +126,12 @@ export class LayerHandlers extends DerivedCoreEventHandlers<{
               ).headingDom.getBoundingClientRect();
 
               LayerHandlers.events.currentCanvasHovered = null;
-              if (editorStore.query.node(parent.id).isCanvas()) {
+              if (this.store.query.node(parent.id).isCanvas()) {
                 if (parent.data.parent) {
-                  const grandparent = editorStore.query
+                  const grandparent = this.store.query
                     .node(parent.data.parent)
                     .get();
-                  if (editorStore.query.node(grandparent.id).isCanvas()) {
+                  if (this.store.query.node(grandparent.id).isCanvas()) {
                     LayerHandlers.events.currentCanvasHovered = parent;
                     if (
                       (e.clientY > parentHeadingInfo.bottom - 10 &&
@@ -159,62 +161,69 @@ export class LayerHandlers extends DerivedCoreEventHandlers<{
                 onCanvas: false,
               };
 
-              layerStore.actions.setIndicator(LayerHandlers.events.indicator);
+              this.layerStore.actions.setIndicator(
+                LayerHandlers.events.indicator
+              );
             }
-          }
-        );
-
-        return () => {
-          cleanupParentConnectors();
-          unbindMouseOver();
-          unbindDragOver();
-          unbindDragEnter();
-        };
+          }),
+        ],
       },
-      layerHeader: (el: HTMLElement) => {
-        layerStore.actions.setDOM(layerId, {
-          headingDom: el,
-        });
+      layerHeader: {
+        init: (el) => {
+          this.layerStore.actions.setDOM(this.id, {
+            headingDom: el,
+          });
+        },
       },
-      drag: (el: HTMLElement) => {
-        el.setAttribute('draggable', 'true');
+      drag: {
+        init: (el) => {
+          el.setAttribute('draggable', true);
 
-        const unbindDragStart = this.addCraftEventListener(
-          el,
-          'dragstart',
-          (e) => {
+          return () => {
+            el.removeAttribute('draggable');
+          };
+        },
+        events: [
+          defineEventListener('dragstart', (e: CraftDOMEvent<DragEvent>) => {
             e.craft.stopPropagation();
-            LayerHandlers.draggedElement = layerId;
-          }
-        );
+            const shadow = (e.target as HTMLElement).cloneNode(
+              true
+            ) as HTMLElement;
+            shadow.style.width = '280px';
+            shadow.style.height = '32px';
+            shadow.style.position = 'fixed';
+            shadow.style.left = '-100%';
+            shadow.style.top = '-100%';
 
-        const unbindDragEnd = this.addCraftEventListener(el, 'dragend', (e) => {
-          e.craft.stopPropagation();
-          const events = LayerHandlers.events;
+            document.body.appendChild(shadow);
+            e.dataTransfer.setDragImage(shadow, 0, 0);
 
-          if (events.indicator && !events.indicator.error) {
-            const { placement } = events.indicator;
-            const { parent, index, where } = placement;
-            const { id: parentId } = parent;
+            LayerHandlers.draggedElement = this.id;
+          }),
+          defineEventListener('dragend', (e: CraftDOMEvent<MouseEvent>, id) => {
+            e.craft.stopPropagation();
+            const events = LayerHandlers.events;
 
-            editorStore.actions.move(
-              LayerHandlers.draggedElement as NodeId,
-              parentId,
-              index + (where === 'after' ? 1 : 0)
-            );
-          }
+            if (events.indicator && !events.indicator.error) {
+              const { placement } = events.indicator;
+              const { parent, index, where } = placement;
+              const { id: parentId } = parent;
 
-          LayerHandlers.draggedElement = null;
-          LayerHandlers.events.indicator = null;
-          layerStore.actions.setIndicator(null);
-        });
+              this.store.actions.move(
+                LayerHandlers.draggedElement as NodeId,
+                parentId,
+                index + (where === 'after' ? 1 : 0)
+              );
+            }
 
-        return () => {
-          el.removeAttribute('draggable');
-          unbindDragStart();
-          unbindDragEnd();
-        };
+            LayerHandlers.draggedElement = null;
+            LayerHandlers.events.indicator = null;
+            this.layerStore.actions.setIndicator(null);
+          }),
+        ],
       },
     };
   }
 }
+
+export type LayerConnectors = ConnectorsForHandlers<LayerHandlers>;

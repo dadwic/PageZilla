@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dadwic/craft.js/"
+    "url": "https://github.com/dadwic/PageZilla/"
   },
   "bugs": {
-    "url": "https://github.com/dadwic/craft.js/issues"
+    "url": "https://github.com/dadwic/PageZilla/issues"
   },
-  "homepage": "https://github.com/dadwic/craft.js/",
+  "homepage": "https://github.com/dadwic/PageZilla/",
   "dependencies": {
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
@@ -46,7 +46,7 @@
     "@svgr/rollup": "^4.3.3"
   },
   "peerDependencies": {
-    "@craftjs/core": "^0.1.0-alpha.1",
+    "@pagezilla/core": "^0.1.0-alpha.1",
     "react": "^16.8.0"
   }
 }

@@ -1,24 +1,31 @@
-import { useEditor } from '@pagezilla/core';
 import React from 'react';
 import styled from 'styled-components';
+import { useEditor } from '@pagezilla/core';
 
 import { EditableLayerName } from './EditableLayerName';
-import Arrow from './svg/arrow.svg';
-import Eye from './svg/eye.svg';
-import Linked from './svg/linked.svg';
-
+import HideIcon from './HideIcon';
+import Link from './Icons/Link';
 import { useLayer } from '../useLayer';
 
-const StyledDiv = styled.div<{ depth: number; selected: boolean }>`
+const StyledDiv = styled.div<{
+  depth: number;
+  selected: boolean;
+}>`
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 4px 10px;
-  background: ${(props) => (props.selected ? '#2680eb' : 'transparent')};
-  color: ${(props) => (props.selected ? '#fff' : 'inherit')};
-  svg {
-    fill: ${(props) => (props.selected ? '#fff' : '#808184')};
-    margin-top: 2px;
+  background: ${({ selected }) => (selected ? '#2680eb' : 'transparent')};
+  color: ${({ selected }) => (selected ? '#fff' : 'inherit')};
+  &::before {
+    content: ' ';
+    position: absolute;
+    left: ${({ depth }) => (depth === 0 ? 0 : depth * 2 * 8 + 2 + 'px')};
+    bottom: 0;
+    height: ${({ depth }) => (depth === 0 ? '0' : '100%')};
+    width: 1px;
+    border-left: ${({ depth }) => (depth === 0 ? 'none' : '1px solid black')};
+    z-index: 2;
   }
   .inner {
     flex: 1;
@@ -26,8 +33,8 @@ const StyledDiv = styled.div<{ depth: number; selected: boolean }>`
       padding: 0px;
       flex: 1;
       display: flex;
-      margin-left: ${(props) => props.depth * 10}px;
       align-items: center;
+      margin-left: ${({ depth }) => depth * 2 * 8}px;
       div.layer-name {
         flex: 1;
         h2 {
@@ -37,55 +44,36 @@ const StyledDiv = styled.div<{ depth: number; selected: boolean }>`
       }
     }
   }
+  .visibility {
+    svg {
+      font-size: 1.25rem;
+    }
+  }
+  .toggle {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px 4px 0;
+    cursor: pointer;
+  }
 `;
 
-const Expand = styled.a<{ expanded: boolean }>`
-  width: 8px;
-  height: 8px;
-  display: block;
-  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-  transform: rotate(${(props) => (props.expanded ? 180 : 0)}deg);
-  opacity: 0.7;
-  cursor: pointer;
-  transform-origin: 60% center;
-`;
-
-const Hide = styled.a<{ selected: boolean; isHidden: boolean }>`
-  width: 14px;
-  height: 14px;
-  margin-right: 10px;
+const ExpandWithChildren = styled.a<{
+  expanded: boolean;
+  hasChildren: boolean;
+}>`
+  width: 16px;
+  height: 16px;
+  display: flex;
   position: relative;
-  transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-  cursor: pointer;
-
-  svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: ${(props) => (props.isHidden ? 0.2 : 1)};
-  }
-  &:after {
-    content: ' ';
-    width: 2px;
-    height: ${(props) => (props.isHidden ? 100 : 0)}%;
+  &::before {
+    content: '${({ expanded, hasChildren }) =>
+      hasChildren ? (expanded ? '\\229F' : '\\229E') : '\\22A0'}';
     position: absolute;
-    left: 2px;
-    top: 3px;
-    background: ${(props) => (props.selected ? '#fff' : '#808184')};
-    transform: rotate(-45deg);
-    transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    transform-origin: 0% 0%;
-    opacity: ${(props) => (props.isHidden ? 0.4 : 1)};
-  }
-`;
-
-const TopLevelIndicator = styled.div`
-  margin-left: -22px;
-  margin-right: 10px;
-
-  svg {
-    width: 12px;
-    height: 12px;
+    font-size: 1.25rem;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: 2;
   }
 `;
 
@@ -93,51 +81,50 @@ export const DefaultLayerHeader: React.FC = () => {
   const {
     id,
     depth,
-    expanded,
     children,
-    connectors: { drag, layerHeader },
+    expanded,
     actions: { toggleLayer },
+    connectors: { drag, layerHeader },
   } = useLayer((layer) => {
     return {
       expanded: layer.expanded,
     };
   });
 
-  const { hidden, actions, selected, topLevel } = useEditor((state, query) => ({
-    hidden: state.nodes[id] && state.nodes[id].data.hidden,
+  const { selected, topLevel } = useEditor((state, query) => ({
     selected: state.events.selected === id,
     topLevel: query.node(id).isTopLevelCanvas(),
   }));
 
+  const hasChildren = Boolean(children) && Boolean(children.length);
+
   return (
     <StyledDiv selected={selected} ref={drag} depth={depth}>
-      <Hide
-        selected={selected}
-        isHidden={hidden}
-        onClick={() => actions.setHidden(id, !hidden)}
-      >
-        <Eye />
-      </Hide>
       <div className="inner">
         <div ref={layerHeader}>
-          {topLevel ? (
-            <TopLevelIndicator>
-              <Linked />
-            </TopLevelIndicator>
-          ) : null}
-
+          <div className="toggle">
+            {/* {hasChildren ? ( */}
+            <ExpandWithChildren
+              expanded={expanded}
+              hasChildren={hasChildren}
+              onClick={(event: React.MouseEvent<any>) => {
+                if (hasChildren) {
+                  event.preventDefault();
+                  toggleLayer();
+                }
+              }}
+            />
+            {/* ) : (
+              <CloseSquare />
+            )} */}
+          </div>
+          {topLevel ? <Link /> : null}
           <div className="layer-name s">
             <EditableLayerName />
           </div>
-          <div>
-            {children && children.length ? (
-              <Expand expanded={expanded} onMouseDown={() => toggleLayer()}>
-                <Arrow />
-              </Expand>
-            ) : null}
-          </div>
         </div>
       </div>
+      <HideIcon />
     </StyledDiv>
   );
 };

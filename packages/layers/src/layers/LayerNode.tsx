@@ -1,10 +1,8 @@
+import React, { useRef, useEffect } from 'react';
 import { useEditor, ROOT_NODE } from '@pagezilla/core';
-import React, { useRef, useEffect, useLayoutEffect, useState } from 'react';
-
-import { LayerContextProvider } from './LayerContextProvider';
-import { useLayer } from './useLayer';
-
 import { useLayerManager } from '../manager/useLayerManager';
+import { useLayer } from './useLayer';
+import { LayerContextProvider } from './LayerContextProvider';
 
 export const LayerNode: React.FC = () => {
   const { id, depth, children, expanded } = useLayer((layer) => ({
@@ -18,21 +16,12 @@ export const LayerNode: React.FC = () => {
       query.node(state.events.selected).ancestors(true).includes(id),
   }));
 
-  const {
-    actions: { registerLayer, toggleLayer },
-    renderLayer,
-    expandRootOnLoad,
-  } = useLayerManager((state) => ({
-    renderLayer: state.options.renderLayer,
-    expandRootOnLoad: state.options.expandRootOnLoad,
-  }));
-
-  const [isRegistered, setRegistered] = useState(false);
-
-  useLayoutEffect(() => {
-    registerLayer(id);
-    setRegistered(true);
-  }, [registerLayer, id]);
+  const { actions, renderLayer, expandRootOnLoad } = useLayerManager(
+    (state) => ({
+      renderLayer: state.options.renderLayer,
+      expandRootOnLoad: state.options.expandRootOnLoad,
+    })
+  );
 
   const expandedRef = useRef<boolean>(expanded);
   expandedRef.current = expanded;
@@ -43,17 +32,24 @@ export const LayerNode: React.FC = () => {
 
   useEffect(() => {
     if (!expandedRef.current && shouldBeExpanded) {
-      toggleLayer(id);
+      actions.toggleLayer(id);
     }
-  }, [toggleLayer, id, shouldBeExpanded]);
+  }, [actions, id, shouldBeExpanded]);
 
   useEffect(() => {
     if (shouldBeExpandedOnLoad.current) {
-      toggleLayer(id);
+      actions.toggleLayer(id);
     }
-  }, [toggleLayer, id]);
+  }, [actions, id]);
 
-  return data && isRegistered ? (
+  const initRef = useRef<boolean>(false);
+
+  if (!initRef.current) {
+    actions.registerLayer(id);
+    initRef.current = true;
+  }
+
+  return data ? (
     <div className={`craft-layer-node ${id}`}>
       {React.createElement(
         renderLayer,

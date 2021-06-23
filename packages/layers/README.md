@@ -14,13 +14,13 @@
 </p>
 <p align="center">
   <strong>
-    <a href="https://dadwic.github.io/craft.js/r/docs/additional/layers">Documentation</a>
+    <a href="https://dadwic.github.io/PageZilla/r/docs/additional/layers">Documentation</a>
   </strong>
 </p>
 
 <p align="center">
   <strong>
-    <a href="https://dadwic.github.io/craft.js/">Craft.js</a>
+    <a href="https://dadwic.github.io/PageZilla/">PageZilla</a>
   </strong>
 </p>
 
