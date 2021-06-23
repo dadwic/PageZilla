@@ -1,10 +1,10 @@
 {
   "name": "example-basic",
-  "version": "0.1.0-beta.60",
+  "version": "0.1.0-beta.61",
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
-    "@pagezilla/core": "^0.1.0-beta.60",
+    "@pagezilla/core": "^0.1.0-beta.61",
     "clsx": "latest",
     "copy-to-clipboard": "^3.2.0",
     "lzutf8": "^0.5.5",
