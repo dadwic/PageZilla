@@ -1,11 +1,16 @@
-import React from 'react';
 import { NodeId } from '@pagezilla/core';
-import { LayerConnectors } from 'events/LayerHandlers';
+import { ChainableConnectors } from '@pagezilla/utils';
+import React from 'react';
+
+import { LayerHandlers } from '../events/LayerHandlers';
 
 export type LayerContext = {
   id: NodeId;
   depth: number;
-  connectors: LayerConnectors;
+  connectors: ChainableConnectors<
+    LayerHandlers['connectors'],
+    React.ReactElement
+  >;
 };
 
 export const LayerContext = React.createContext<LayerContext>(

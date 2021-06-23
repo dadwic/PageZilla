@@ -1,32 +1,46 @@
-import React, { useMemo, useContext } from 'react';
 import { useEditor, useEventHandler } from '@pagezilla/core';
+import { wrapConnectorHooks } from '@pagezilla/utils';
+import React, { useMemo, useContext, useRef } from 'react';
+
 import { LayerContext } from './LayerContext';
 import { LayerNode } from './LayerNode';
+
 import { LayerHandlers } from '../events/LayerHandlers';
 import { LayerManagerContext } from '../manager';
 
-export const LayerContextProvider: React.FC<Omit<
-  LayerContext,
-  'connectors'
->> = ({ id, depth }) => {
-  const handler = useEventHandler();
-  const { store } = useContext(LayerManagerContext);
-  const connectors = useMemo(
-    () => handler.derive(LayerHandlers, store, id).connectors(),
-    [handler, id, store]
-  );
+export const LayerContextProvider: React.FC<Omit<LayerContext, 'connectors'>> =
+  ({ id, depth }) => {
+    const coreEventHandlers = useEventHandler();
 
-  const { exists } = useEditor((state) => ({
-    exists: !!state.nodes[id],
-  }));
+    const { store } = useContext(LayerManagerContext);
+    const storeRef = useRef(store);
+    storeRef.current = store;
 
-  if (!exists) {
-    return null;
-  }
+    const handlers = useMemo(
+      () =>
+        coreEventHandlers.derive(LayerHandlers, {
+          layerStore: storeRef.current,
+          layerId: id,
+        }),
+      [coreEventHandlers, id]
+    );
 
-  return (
-    <LayerContext.Provider value={{ id, depth, connectors }}>
-      <LayerNode />
-    </LayerContext.Provider>
-  );
-};
+    const connectors = useMemo(
+      () => wrapConnectorHooks(handlers.connectors),
+      [handlers]
+    );
+
+    const { exists } = useEditor((state) => ({
+      exists: !!state.nodes[id],
+    }));
+
+    if (!exists) {
+      return null;
+    }
+
+    return (
+      <LayerContext.Provider value={{ id, depth, connectors }}>
+        <LayerNode />
+      </LayerContext.Provider>
+    );
+  };
