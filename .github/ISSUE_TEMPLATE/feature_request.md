@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea you'd like to see in Craft.js
+about: Suggest an idea you'd like to see in PageZilla
 title: ""
 labels: ""
 assignees: ""

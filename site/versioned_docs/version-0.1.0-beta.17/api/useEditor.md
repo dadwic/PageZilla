@@ -58,7 +58,7 @@ const { connectors, actions, query, ...collected } = useEditor(collector);
         "(sourceNodeId: NodeId, targetNodeId: NodeId, pos: {x: number, y: number}, nodesToDOM?: (node: Node) => HTMLElement = node => node.dom)",
         "Given the target Node and mouse coordinates on the screen, determine the best possible location to drop the source Node. By default, the Node's DOM property is taken into consideration."
       ],
-      ["node", "(id: NodeId) => NodeHelpers", "Returns an object containing helper methods to describe the specified Node. Click <a href='/craft.js/r/docs/api/helpers/'>here</a> for more information."],
+      ["node", "(id: NodeId) => NodeHelpers", "Returns an object containing helper methods to describe the specified Node. Click <a href='/PageZilla/r/docs/api/helpers/'>here</a> for more information."],
       ["parseReactElement", "(element: React.ReactElement) => Object", [
         ["toNodeTree", "(normalize?: (node: Node, jsx: React.ReactElement) => void) => NodeTree", "Parse a given React element into a NodeTree"]
       ]],
@@ -73,7 +73,7 @@ const { connectors, actions, query, ...collected } = useEditor(collector);
         ["canRedo", "() => boolean", "Returns true if redo is possible"]
       ]]
     ]],
-    ["inContext", "boolean", "Returns false if the component is rendered outside of the &lt;Editor /&gt;. This is useful if you are designing a general component that you also wish to use outside of Craft.js."],
+    ["inContext", "boolean", "Returns false if the component is rendered outside of the &lt;Editor /&gt;. This is useful if you are designing a general component that you also wish to use outside of PageZilla."],
     ["...collected", "Collected", "The collected values returned from the collector"]
   ]
   ]

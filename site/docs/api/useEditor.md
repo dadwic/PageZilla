@@ -73,7 +73,7 @@ const { connectors, actions, query, ...collected } = useEditor(collector);
         ["canRedo", "() => boolean", "Returns true if redo is possible"]
       ]]
     ]],
-    ["inContext", "boolean", "Returns false if the component is rendered outside of the &lt;Editor /&gt;. This is useful if you are designing a general component that you also wish to use outside of Craft.js."],
+    ["inContext", "boolean", "Returns false if the component is rendered outside of the &lt;Editor /&gt;. This is useful if you are designing a general component that you also wish to use outside of PageZilla."],
     ["...collected", "Collected", "The collected values returned from the collector"]
   ]
   ]

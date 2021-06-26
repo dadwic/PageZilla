@@ -79,7 +79,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dadwic/craft.js.git"
+    "url": "git+https://github.com/dadwic/PageZilla.git"
   },
   "jest": {
     "setupFilesAfterEnv": [

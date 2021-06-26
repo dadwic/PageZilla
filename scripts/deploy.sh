@@ -13,4 +13,4 @@ cp -r ./examples/landing/out/ build/examples/landing
 
 touch build/.nojekyll
 touch build/CNAME
-echo "craft.js.org" >> build/CNAME
+echo "pagezilla.js.org" >> build/CNAME

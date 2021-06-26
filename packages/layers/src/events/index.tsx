@@ -1,5 +1,5 @@
 import { useEditor } from '@pagezilla/core';
-import { RenderIndicator } from '@craftjs/utils';
+import { RenderIndicator } from '@pagezilla/utils';
 import React, { useMemo } from 'react';
 
 import { useLayerManager } from '../manager/useLayerManager';

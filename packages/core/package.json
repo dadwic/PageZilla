@@ -16,14 +16,14 @@
     "html"
   ],
   "author": "Mehrdad Mehralian <dadwic0@gmail.com>",
-  "homepage": "https://github.com/dadwic/craft.js/",
+  "homepage": "https://github.com/dadwic/PageZilla/",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dadwic/craft.js/"
+    "url": "https://github.com/dadwic/PageZilla/"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development ../../scripts/build.sh",
@@ -32,7 +32,7 @@
     "clean": "rimraf lib dist"
   },
   "bugs": {
-    "url": "https://github.com/dadwic/craft.js/issues"
+    "url": "https://github.com/dadwic/PageZilla/issues"
   },
   "dependencies": {
     "@pagezilla/utils": "^0.1.0-beta.63",

@@ -1,9 +1,9 @@
 <div align="center" style={{d}}>
-<h1>@craftjs/layers</h1>
+<h1>@pagezilla/layers</h1>
 
-<a href="https://www.npmjs.com/package/@craftjs/layers">
-  <img src="https://img.shields.io/npm/v/@craftjs/layers?color=%232680eb&label=NPM&logo=npm&logoColor=%232680eb&style=for-the-badge">
-</a><img alt="NPM" src="https://img.shields.io/npm/l/@craftjs/layers?color=%23000&style=for-the-badge">
+<a href="https://www.npmjs.com/package/@pagezilla/layers">
+  <img src="https://img.shields.io/npm/v/@pagezilla/layers?color=%232680eb&label=NPM&logo=npm&logoColor=%232680eb&style=for-the-badge">
+</a><img alt="NPM" src="https://img.shields.io/npm/l/@pagezilla/layers?color=%23000&style=for-the-badge">
 </div>
 
 <div align="center" style={{d}}>
@@ -14,26 +14,26 @@
 </p>
 <p align="center">
   <strong>
-    <a href="https://prevwong.github.io/craft.js/r/docs/additional/layers">Documentation</a>
+    <a href="https://prevwong.github.io/PageZilla/r/docs/additional/layers">Documentation</a>
   </strong>
 </p>
 
 <p align="center">
   <strong>
-    <a href="https://prevwong.github.io/craft.js/">Craft.js</a>
+    <a href="https://prevwong.github.io/PageZilla/">PageZilla</a>
   </strong>
 </p>
 
 ## Usage
 
 ```bash
-yarn add @craftjs/layers
+yarn add @pagezilla/layers
 ```
 
 ```jsx
 import React from "react";
 import {Editor} from "@pagezilla/core"
-import {Layers} from "@craftjs/layers"
+import {Layers} from "@pagezilla/layers"
 
 export default function App() {
   return (

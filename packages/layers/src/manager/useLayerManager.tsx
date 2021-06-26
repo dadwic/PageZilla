@@ -1,4 +1,4 @@
-import { useCollector, useCollectorReturnType } from '@craftjs/utils';
+import { useCollector, useCollectorReturnType } from '@pagezilla/utils';
 import { useContext } from 'react';
 
 import { LayerManagerContext, LayerStore } from './context';

@@ -83,7 +83,7 @@ describe('createNode', () => {
             parent: 'ROOT',
             props: {
               is: 'a',
-              href: 'craft.js.org',
+              href: 'pagezilla.js.org',
               style: { color: '#fff' },
             },
           },

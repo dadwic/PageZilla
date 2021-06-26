@@ -34,12 +34,12 @@ export const ERROR_INVALID_NODE_ID = 'Invalid parameter Node Id specified';
 export const ERROR_DELETE_TOP_LEVEL_NODE =
   'Attempting to delete a top-level Node';
 
-export const ERROR_RESOLVER_NOT_AN_OBJECT = `Resolver in <Editor /> has to be an object. For (de)serialization Craft.js needs a list of all the User Components. 
+export const ERROR_RESOLVER_NOT_AN_OBJECT = `Resolver in <Editor /> has to be an object. For (de)serialization PageZilla needs a list of all the User Components. 
     
-More info: https://craft.js.org/r/docs/api/editor#props`;
+More info: https://pagezilla.js.org/r/docs/api/editor#props`;
 
 export const ERROR_DESERIALIZE_COMPONENT_NOT_IN_RESOLVER = `An Error occurred while deserializing components: Cannot find component <%displayName% /> in resolver map. Please check your resolver in <Editor />
 
 Available components in resolver: %availableComponents%
 
-More info: https://craft.js.org/r/docs/api/editor#props`;
+More info: https://pagezilla.js.org/r/docs/api/editor#props`;

@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 module.exports = {
-  title: 'craft.js',
+  title: 'PageZilla',
   tagline: 'A React framework for building drag-n-drop page editors',
-  url: 'https://craft.js.org/',
+  url: 'https://pagezilla.js.org/',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'dadwic', // Usually your GitHub org/user name.
-  projectName: 'craft.js', // Usually your repo name.
+  projectName: 'PageZilla', // Usually your repo name.
   onBrokenLinks: 'warn',
   themeConfig: {
     algolia: {
@@ -24,7 +24,7 @@ module.exports = {
     },
     navbar: {
       hideOnScroll: false,
-      title: 'craft.js',
+      title: 'PageZilla',
       items: [
         {
           to: 'docs/overview',
@@ -49,7 +49,7 @@ module.exports = {
         },
         { to: 'support', label: 'Support', position: 'right' },
         {
-          href: 'https://github.com/dadwic/craft.js',
+          href: 'https://github.com/dadwic/PageZilla',
           label: 'GitHub',
           position: 'right',
         },
@@ -84,7 +84,7 @@ module.exports = {
           items: [
             {
               label: 'Github Repository',
-              href: 'https://github.com/dadwic/craft.js',
+              href: 'https://github.com/dadwic/PageZilla',
             },
             {
               label: 'Open Collective',

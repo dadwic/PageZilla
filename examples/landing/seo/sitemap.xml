@@ -5,12 +5,12 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-  <loc>https://craft.js.org/</loc>
+  <loc>https://pagezilla.js.org/</loc>
   <lastmod>2020-01-04T06:39:23+00:00</lastmod>
 </url>
 
 <url>
-  <loc>https://craft.js.org/r/</loc>
+  <loc>https://pagezilla.js.org/r/</loc>
   <lastmod>2020-01-04T06:39:23+00:00</lastmod>
 </url>
 </urlset>

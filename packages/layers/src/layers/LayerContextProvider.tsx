@@ -1,5 +1,5 @@
 import { useEditor, useEventHandler } from '@pagezilla/core';
-import { wrapConnectorHooks } from '@craftjs/utils';
+import { wrapConnectorHooks } from '@pagezilla/utils';
 import React, { useMemo, useContext, useRef } from 'react';
 
 import { LayerContext } from './LayerContext';

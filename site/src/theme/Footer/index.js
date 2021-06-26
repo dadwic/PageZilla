@@ -117,8 +117,8 @@ function Footer() {
             </div>
           )}
           <div className="text--center margin-top--md">
-            <a target="_blank" href="https://github.com/dadwic/craft.js">
-              <img src="https://img.shields.io/github/stars/dadwic/craft.js?color=%23000&logo=github&style=social" />
+            <a target="_blank" href="https://github.com/dadwic/PageZilla">
+              <img src="https://img.shields.io/github/stars/dadwic/PageZilla?color=%23000&logo=github&style=social" />
             </a>
           </div>
           <div className={'margin-top--md'}>

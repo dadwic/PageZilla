@@ -24,7 +24,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **slate:** improve speed of slate/craft integration ([#241](https://github.com/dadwic/craft.js/issues/241)) ([763274c](https://github.com/dadwic/craft.js/commit/763274c4787130675127703d333ea63ee8482fb1))
+* **slate:** improve speed of slate/craft integration ([#241](https://github.com/dadwic/PageZilla/issues/241)) ([763274c](https://github.com/dadwic/PageZilla/commit/763274c4787130675127703d333ea63ee8482fb1))
 
 
 
@@ -35,7 +35,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* orphaned linked nodes ([#236](https://github.com/dadwic/craft.js/issues/236)) ([65450ea](https://github.com/dadwic/craft.js/commit/65450ea97a0bbac4efc51d0306025bd07a5165bb))
+* orphaned linked nodes ([#236](https://github.com/dadwic/PageZilla/issues/236)) ([65450ea](https://github.com/dadwic/PageZilla/commit/65450ea97a0bbac4efc51d0306025bd07a5165bb))
 
 
 
@@ -54,7 +54,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* remove slate node ([#217](https://github.com/dadwic/craft.js/issues/217)) ([9f7ec97](https://github.com/dadwic/craft.js/commit/9f7ec97e88825460054f8880bb4b5900c2776721))
+* remove slate node ([#217](https://github.com/dadwic/PageZilla/issues/217)) ([9f7ec97](https://github.com/dadwic/PageZilla/commit/9f7ec97e88825460054f8880bb4b5900c2776721))
 
 
 
@@ -65,7 +65,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* additional indicator options ([#212](https://github.com/dadwic/craft.js/issues/212)) ([0d9c6e5](https://github.com/dadwic/craft.js/commit/0d9c6e59a8725ba600d177ad5a9beec0434e640c))
+* additional indicator options ([#212](https://github.com/dadwic/PageZilla/issues/212)) ([0d9c6e5](https://github.com/dadwic/PageZilla/commit/0d9c6e59a8725ba600d177ad5a9beec0434e640c))
 
 
 
@@ -84,7 +84,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* lint ([3750b11](https://github.com/dadwic/craft.js/commit/3750b11dbe27b477820dac8c940bcb46981e6956))
+* lint ([3750b11](https://github.com/dadwic/PageZilla/commit/3750b11dbe27b477820dac8c940bcb46981e6956))
 
 
 
@@ -95,7 +95,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* handlers not being disabled ([#189](https://github.com/dadwic/craft.js/issues/189)) ([f9c2274](https://github.com/dadwic/craft.js/commit/f9c227415d3bc4ef0490437b16a862234c15d7f7))
+* handlers not being disabled ([#189](https://github.com/dadwic/PageZilla/issues/189)) ([f9c2274](https://github.com/dadwic/PageZilla/commit/f9c227415d3bc4ef0490437b16a862234c15d7f7))
 
 
 
@@ -122,7 +122,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* yarn.lock ([6782edf](https://github.com/dadwic/craft.js/commit/6782edf1715a41c0f21daaeab92c5e7edb8c2f17))
+* yarn.lock ([6782edf](https://github.com/dadwic/PageZilla/commit/6782edf1715a41c0f21daaeab92c5e7edb8c2f17))
 
 
 
@@ -133,7 +133,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **slate:** delete orphaned nodes ([#171](https://github.com/dadwic/craft.js/issues/171)) ([f201ddc](https://github.com/dadwic/craft.js/commit/f201ddc8a26cd09deab69220a9099bb5ff2c6973))
+* **slate:** delete orphaned nodes ([#171](https://github.com/dadwic/PageZilla/issues/171)) ([f201ddc](https://github.com/dadwic/PageZilla/commit/f201ddc8a26cd09deab69220a9099bb5ff2c6973))
 
 
 
@@ -144,7 +144,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **slate:** split operation bug ([#169](https://github.com/dadwic/craft.js/issues/169)) ([9a7b3b3](https://github.com/dadwic/craft.js/commit/9a7b3b3e3a4f6d71d2ef5d9d1de1cb4d2c931696))
+* **slate:** split operation bug ([#169](https://github.com/dadwic/PageZilla/issues/169)) ([9a7b3b3](https://github.com/dadwic/PageZilla/commit/9a7b3b3e3a4f6d71d2ef5d9d1de1cb4d2c931696))
 
 
 
@@ -155,7 +155,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* remove auto-add drag connector ([#163](https://github.com/dadwic/craft.js/issues/163)) ([60a600a](https://github.com/dadwic/craft.js/commit/60a600a8c9bc675b3715c6f5881da9574fbf3845))
+* remove auto-add drag connector ([#163](https://github.com/dadwic/PageZilla/issues/163)) ([60a600a](https://github.com/dadwic/PageZilla/commit/60a600a8c9bc675b3715c6f5881da9574fbf3845))
 
 
 
@@ -166,7 +166,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* remove slate op ([#162](https://github.com/dadwic/craft.js/issues/162)) ([a46ed6c](https://github.com/dadwic/craft.js/commit/a46ed6cd72700273279e89c13e9e7c3d4238f93c))
+* remove slate op ([#162](https://github.com/dadwic/PageZilla/issues/162)) ([a46ed6c](https://github.com/dadwic/PageZilla/commit/a46ed6cd72700273279e89c13e9e7c3d4238f93c))
 
 
 
@@ -177,7 +177,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* slate bugs ([#159](https://github.com/dadwic/craft.js/issues/159)) ([58af806](https://github.com/dadwic/craft.js/commit/58af80669a43bedf015d22be0a8d6be2a47de89c))
+* slate bugs ([#159](https://github.com/dadwic/PageZilla/issues/159)) ([58af806](https://github.com/dadwic/PageZilla/commit/58af80669a43bedf015d22be0a8d6be2a47de89c))
 
 
 
@@ -188,7 +188,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* history merge ([8016b82](https://github.com/dadwic/craft.js/commit/8016b82bf26dd208a17df59c93ed7f46cbee955f))
+* history merge ([8016b82](https://github.com/dadwic/PageZilla/commit/8016b82bf26dd208a17df59c93ed7f46cbee955f))
 
 
 
@@ -231,7 +231,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* History throttle ([#157](https://github.com/dadwic/craft.js/issues/157)) ([bc4bcbd](https://github.com/dadwic/craft.js/commit/bc4bcbde27c6cc48ba132e07e03f0c43798f6272))
+* History throttle ([#157](https://github.com/dadwic/PageZilla/issues/157)) ([bc4bcbd](https://github.com/dadwic/PageZilla/commit/bc4bcbde27c6cc48ba132e07e03f0c43798f6272))
 
 
 

@@ -20,7 +20,7 @@ function Support() {
                   </h1>
                 </header>
                 <p>
-                  Development for Craft.js began in April 2019 as a personal
+                  Development for PageZilla began in April 2019 as a personal
                   project of mine. It was months after months of experimenting
                   and trial-and-error until it was able to become a viable
                   solution. The repository was made public and the first public
@@ -29,10 +29,10 @@ function Support() {
                   world.
                 </p>
                 <p>
-                  Craft.js is released under the{' '}
+                  PageZilla is released under the{' '}
                   <a
                     target="_blank"
-                    href="https://github.com/dadwic/craft.js/blob/master/LICENSE"
+                    href="https://github.com/dadwic/PageZilla/blob/master/LICENSE"
                   >
                     MIT license
                   </a>{' '}
