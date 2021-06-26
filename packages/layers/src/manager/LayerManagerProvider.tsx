@@ -1,4 +1,4 @@
-import { useMethods } from '@pagezilla/utils';
+import { useMethods } from '@craftjs/utils';
 import React from 'react';
 
 import { LayerMethods } from './actions';

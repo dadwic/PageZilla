@@ -1,5 +1,5 @@
 import { NodeId } from '@pagezilla/core';
-import { ChainableConnectors } from '@pagezilla/utils';
+import { ChainableConnectors } from '@craftjs/utils';
 import React from 'react';
 
 import { LayerHandlers } from '../events/LayerHandlers';
